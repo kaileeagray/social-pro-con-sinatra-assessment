@@ -36,6 +36,8 @@ GEM
     daemons (1.2.3)
     diff-lcs (1.2.5)
     eventmachine (1.2.0.1)
+    faker (1.6.5)
+      i18n (~> 0.5)
     i18n (0.7.0)
     json (1.8.3)
     method_source (0.8.2)
@@ -115,6 +117,7 @@ DEPENDENCIES
   bcrypt
   capybara
   database_cleaner!
+  faker
   pry
   rack-test
   rake
