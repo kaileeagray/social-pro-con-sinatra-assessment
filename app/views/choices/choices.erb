@@ -1,0 +1,22 @@
+<h1>Welcome, <%=@current_user.username if @current_user%>!</h1>
+<h2>View and edit your Pro/Con Lists:</h2>
+
+<%@current_user.choices.all.each do |choice|%>
+    <h4><%=choice.title%></h4>
+    <p><%=choice.description%></p>
+<%end%>
+
+<br>
+
+<h2>View all users' lists:</h2>
+  <ul>
+    <%User.all.each do |user|%>
+      <%if user.id != @current_user.id%>
+        <h3>User: <%=user.username%></h3>
+        <%user.choices.all.each do |choice|%>
+            <li><h4><%=choice.title%> </h4></li>
+            <p><%=choice.description%></p>
+        <%end%>
+      <%end%>
+    <%end%>
+  </ul>
