@@ -2,20 +2,20 @@
 <h2>View and edit your Pro/Con Lists:</h2>
 
 <%@current_user.lists.all.each do |list|%>
-    <h4><%=list.title%></h4>
+    <a href="/lists/<%=list.id%>"><h4><%=list.title%></h4></a>
     <p><%=list.description%></p>
+
 <%end%>
 
 <br>
 
-<h2>View all
-   users' lists:</h2>
+<h2>View all users' lists:</h2>
   <ul>
     <%User.all.each do |user|%>
       <%if user.id != @current_user.id%>
         <h3>User: <%=user.username%></h3>
         <%user.lists.all.each do |list|%>
-            <li><h4><%=list.title%> </h4></li>
+            <a href="/lists/<%=list.id%>"><h4><%=list.title%></h4></a>
             <p><%=list.description%></p>
         <%end%>
       <%end%>
