@@ -73,10 +73,20 @@ class ListsController < ApplicationController
     end
 
     delete '/lists/:id/delete' do #delete action
-      # list = list.find(params[:id])
-      # if logged_in? && list == current_user.lists.find_by(params[:id])
-      #   list.delete
-      # end
+      list = List.find(params[:id])
+      if logged_in? && list == current_user.lists.find_by(params[:id])
+        list.delete
+      end
+      redirect "/lists"
+    end
+
+    get '/lists/:id/procons/new' do
+      @list = List.find(params[:id].to_i)
+      if current_user.lists.include?(@list) && logged_in?
+        redirect "/lists/#{params[:id]}/edit"
+      else
+        erb :'/procons/suggest_procons'
+      end
     end
 
 
