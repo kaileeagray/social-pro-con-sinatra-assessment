@@ -15,15 +15,15 @@ Create - Read - Update - Delete
   3. edit user info
   4. delete
 
-# CRUD - choices
-  1. create new choice
-  2. view all choices by user
-  3. edit choices
-  4. delete choices
+# CRUD - lists
+  1. create new list
+  2. view all lists by user
+  3. edit lists
+  4. delete lists
 
 # CRUD - pro/cons
-  1. add pro/cons to choices
-  2. view all pro/con by choices or by user
+  1. add pro/cons to lists
+  2. view all pro/con by lists or by user
   3. edit pro/cons
   4. delete pro/cons
 

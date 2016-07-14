@@ -1,6 +1,6 @@
 class Pro < ActiveRecord::Base
 
-  belongs_to :choice
+  belongs_to :list
   belongs_to :user
 
 end

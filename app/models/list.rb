@@ -1,4 +1,4 @@
-class Choice < ActiveRecord::Base
+class List < ActiveRecord::Base
   has_many :pros
   has_many :cons
   belongs_to :user

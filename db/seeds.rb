@@ -9,31 +9,31 @@
   )
 end
 
-# Create choices
+# Create lists
 100.times do
-  choice = Choice.create(title: Faker::Hipster.word, description: Faker::Hipster.sentence, user_id: Faker::Number.between(1, 11))
+  list = List.create(title: Faker::Hipster.word, description: Faker::Hipster.sentence, user_id: Faker::Number.between(1, 11))
 end
 
 User.all.each do |user|
-  choice = Choice.create(title: Faker::Hipster.word, description: Faker::Hipster.sentence, user_id: user.id)
+  list = List.create(title: Faker::Hipster.word, description: Faker::Hipster.sentence, user_id: user.id)
 end
 
 # Create pros/cons
-Choice.all.each do |choice|
-  pro = Pro.create(choice_id: choice.id, user_id: Faker::Number.between(1, 11), description: Faker::ChuckNorris.fact, rank: Faker::Number.between(1, 100))
-  con = Con.create(choice_id: choice.id, user_id: Faker::Number.between(1, 11), description: Faker::StarWars.quote, rank: Faker::Number.between(1, 100))
+List.all.each do |list|
+  pro = Pro.create(list_id: list.id, user_id: Faker::Number.between(1, 11), description: Faker::ChuckNorris.fact, rank: Faker::Number.between(1, 100))
+  con = Con.create(list_id: list.id, user_id: Faker::Number.between(1, 11), description: Faker::StarWars.quote, rank: Faker::Number.between(1, 100))
   pro.save!
   con.save!
-  pro = Pro.create(choice_id: choice.id, user_id: Faker::Number.between(1, 11), description: Faker::ChuckNorris.fact, rank: Faker::Number.between(1, 100))
-  con = Con.create(choice_id: choice.id, user_id: Faker::Number.between(1, 11), description: Faker::StarWars.quote, rank: Faker::Number.between(1, 100))
+  pro = Pro.create(list_id: list.id, user_id: Faker::Number.between(1, 11), description: Faker::ChuckNorris.fact, rank: Faker::Number.between(1, 100))
+  con = Con.create(list_id: list.id, user_id: Faker::Number.between(1, 11), description: Faker::StarWars.quote, rank: Faker::Number.between(1, 100))
   pro.save!
   con.save!
 end
 
 
 50.times do
-  pro = Pro.create(choice_id: Faker::Number.between(1, 200), user_id: Faker::Number.between(1, 11), description: Faker::ChuckNorris.fact, rank: Faker::Number.between(1, 100))
-  con = Con.create(choice_id: Faker::Number.between(1, 200), user_id: Faker::Number.between(1, 11), description: Faker::StarWars.quote, rank: Faker::Number.between(1, 100))
+  pro = Pro.create(list_id: Faker::Number.between(1, 200), user_id: Faker::Number.between(1, 11), description: Faker::ChuckNorris.fact, rank: Faker::Number.between(1, 100))
+  con = Con.create(list_id: Faker::Number.between(1, 200), user_id: Faker::Number.between(1, 11), description: Faker::StarWars.quote, rank: Faker::Number.between(1, 100))
   pro.save!
   con.save!
 end

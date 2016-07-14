@@ -13,21 +13,21 @@
 
 ActiveRecord::Schema.define(version: 20160713185944) do
 
-  create_table "choices", force: :cascade do |t|
-    t.string  "title"
-    t.text    "description"
-    t.integer "user_id"
-  end
-
   create_table "cons", force: :cascade do |t|
-    t.integer "choice_id"
+    t.integer "list_id"
     t.integer "user_id"
     t.integer "rank"
     t.string  "description"
   end
 
+  create_table "lists", force: :cascade do |t|
+    t.string  "title"
+    t.text    "description"
+    t.integer "user_id"
+  end
+
   create_table "pros", force: :cascade do |t|
-    t.integer "choice_id"
+    t.integer "list_id"
     t.integer "user_id"
     t.integer "rank"
     t.string  "description"

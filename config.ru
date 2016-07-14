@@ -6,6 +6,6 @@ end
 
 use Rack::MethodOverride
 use UsersController
-use ChoicesController
+use ListsController
 use SessionsController
 run ApplicationController

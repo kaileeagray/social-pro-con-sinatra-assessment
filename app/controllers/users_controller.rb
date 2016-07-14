@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     else
       user = User.create(params)
       login(user.username, params[:password])
-      redirect '/choices'
+      redirect '/lists'
     end
   end
 
