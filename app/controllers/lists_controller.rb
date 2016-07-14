@@ -8,13 +8,21 @@ class ListsController < ApplicationController
     end
   end
 
-    get '/lists/new' do
-      if logged_in?
-          erb :'lists/create_list'
-      else
-        redirect '/login'
-      end
+  get '/new' do
+    redirect '/lists/new'
+  end
+
+  get '/lists/:id/new' do
+    redirect '/lists/new'
+  end
+
+  get '/lists/new' do
+    if logged_in?
+        erb :'lists/create_list'
+    else
+      redirect '/login'
     end
+  end
 
     post '/list' do
       # if logged_in? && params[:list] != ""
@@ -29,7 +37,7 @@ class ListsController < ApplicationController
     get '/lists/:id' do
       @list = List.find(params[:id].to_i)
       if current_user.lists.include?(@list) && logged_in?
-        redirect "/lists/#{params[:id]}/edit"
+        erb :'/lists/user_show_list'
       else
         erb :'/lists/show_list'
       end
