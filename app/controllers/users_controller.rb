@@ -15,4 +15,9 @@ class UsersController < ApplicationController
     end
   end
 
+  get "/users/:name" do
+    @user = User.find_by(username: params[:name])
+    erb :'/users/show_users_lists'
+  end
+
 end

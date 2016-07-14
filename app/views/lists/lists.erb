@@ -10,7 +10,6 @@
 <br>
 
 <h2>View all users' lists:</h2>
-  <ul>
     <%User.all.each do |user|%>
       <%if user.id != @current_user.id%>
         <h3>User: <%=user.username%></h3>
@@ -20,4 +19,3 @@
         <%end%>
       <%end%>
     <%end%>
-  </ul>

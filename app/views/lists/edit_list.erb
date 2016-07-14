@@ -1,0 +1,34 @@
+<h1>Decision: <%=@list.title if @list%></h1>
+<h2>Description: <%=@list.description%></h2>
+
+<button href="/lists/<%=@list.id%>/edit">Edit list</button>
+
+
+<form method="post" action="/lists/<%=@list.id%>/delete">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <button type="submit" value="submit">Delete list</button>
+<form>
+
+<br></br>
+
+
+<ul>
+  <h3>Pros:</h3>
+    <%@list.pros.each do |pro|%>
+      <li><%=pro.description%></li>
+      <li>Rank: <%=pro.rank%></li>
+      <br>
+    <%end%>
+    <button href="/lists/<%=@list.id%>/pros/edit">Edit Pros</button>
+</ul>
+<br>
+<ul>
+  <h3>Cons:</h3>
+    <%@list.cons.each do |con|%>
+      <li><%=con.description%></li>
+      <li>Rank: <%=con.rank%></li>
+      <br>
+    <%end%>
+    <button href="/lists/<%=@list.id%>/pros/edit">Edit Cons</button>
+</ul>
+<br></br>

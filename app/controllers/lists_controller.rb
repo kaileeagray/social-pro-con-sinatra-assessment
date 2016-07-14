@@ -27,8 +27,12 @@ class ListsController < ApplicationController
     end
 
     get '/lists/:id' do
-       @list = List.find(params[:id].to_i)
-      erb :'/lists/show_list'
+      @list = List.find(params[:id].to_i)
+      if current_user.lists.include?(@list) && logged_in?
+        redirect "/lists/#{params[:id]}/edit"
+      else
+        erb :'/lists/show_list'
+      end
       # if logged_in?
       #   @list = list.find(params[:id].to_i)
       #   erb :'/lists/show_list'
@@ -40,6 +44,12 @@ class ListsController < ApplicationController
 
 
     get '/lists/:id/edit' do
+      @list = List.find(params[:id].to_i)
+      if current_user.lists.include?(@list) && logged_in?
+        erb :'/lists/edit_list'
+      else
+        erb :'/lists/show_list'
+      end
       # if !logged_in?
       #   redirect "/login" # redirect if not logged in
       # else
