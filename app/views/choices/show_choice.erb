@@ -1,5 +1,24 @@
-<h4><%=@choice.title if @choice%></h4>
-<p><%=@choice.description%></p>
+<h1>Choice: <%=@choice.title if @choice%></h1>
+<h2>Description: <%=@choice.description%></h2>
+
+<ul>
+  <h3>Pros:</h3>
+    <%@choice.pros.each do |pro|%>
+      <li><%=pro.description%></li>
+      <li>Rank: <%=pro.rank%></li>
+    <%end%>
+</ul>
+<br>
+<ul>
+  <h3>Cons:</h3>
+    <%@choice.cons.each do |con|%>
+      <li><%=con.description%></li>
+      <li>Rank: <%=con.rank%></li>
+    <%end%>
+</ul>
+
+
+<br></br>
 <a href="/choices/<%=@choice.id%>/edit">Edit Choice</a>
 
 
