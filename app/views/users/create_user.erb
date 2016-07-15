@@ -1,7 +1,17 @@
-<%binding.pry%>
-<div class="container">
-  <h1><%=@errors if @errors%></h1>
-</div>
+
+<%if @errors%>
+  <div class="panel panel-danger">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Account creation failed. Please try again after fixing the following errrors:</div>
+    <!-- List group -->
+    <ul class="list-group">
+      <% @errors.each do |error|%>
+        <li class="list-group-item"><%=error%></li>
+      <%end%>
+      <li class="list-group-item">If you have an existing account, <a href="/login">log in here</a>.</li>
+    </ul>
+  </div>
+<%end%>
 
 <div class="container">
   <form action="/signup" method="POST"  class="form-signin" _lpchecked="1">

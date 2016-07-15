@@ -10,8 +10,8 @@ class UsersController < ApplicationController
     if signup_errors?(params)
       @errors = []
       @errors < "All fields must be completed." if any_nil?(params)
-      @errors << "The username you entered is already associated to an account." if username_exists?(params)
-      @errors << "The email you entered is already associated to an account." if email_exists?(params)
+      @errors << "The username #{params[:username]} is associated to an existing account." if username_exists?(params)
+      @errors << "The email #{params[:email]} is associated to an existing account." if email_exists?(params)
       @errors << "Passwords must match." if params["password"] != params["confirm_password"]
       erb :'/users/create_user'
     else
