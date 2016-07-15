@@ -2,7 +2,7 @@
   <h1><%=@list.title if @list%> <small><%=@list.description%></small></h1>
 </div>
 
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="col-md-6">
       <button href="/lists/<%=@list.id%>/edit" class="btn btn-primary btn-block">Edit list</button>
@@ -16,38 +16,38 @@
   </div>
 </div>
 
-
-
-
-
-
 <br></br>
+
+
 <div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-success">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><h3>Pros:</h3></div>
+        <!-- List group -->
+          <ul class="list-group">
+            <%@list.pros.each do |pro|%>
+              <li class="list-group-item"><%=pro.description%> <br> Rank: <%=pro.rank%></li>
+            <%end%>
+            <li class="list-group-item"><button href="/lists/<%=@list.id%>/pros/edit" class="btn btn-primary btn-block">Edit Pros</button></li>
+          </ul>
+        </div>
+      </div>
 
-    <div class="panel panel-success">
-      <!-- Default panel contents -->
-      <div class="panel-heading"><h3>Pros:</h3></div>
-      <!-- List group -->
-      <ul class="list-group">
-        <%@list.pros.each do |pro|%>
-          <li class="list-group-item"><%=pro.description%> <br> Rank: <%=pro.rank%></li>
-        <%end%>
-        <li class="list-group-item"><button href="/lists/<%=@list.id%>/pros/edit" class="btn btn-primary btn-block">Edit Pros</button></li>
-      </ul>
+    <div class="col-md-6">
+      <div class="panel panel-danger">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><h3>Cons:</h3></div>
+        <!-- List group -->
+        <ul class="list-group">
+          <%@list.cons.each do |con|%>
+            <li class="list-group-item"><%=con.description%> <br> Rank: <%=con.rank%></li>
+          <%end%>
+          <li class="list-group-item"><button href="/lists/<%=@list.id%>/pros/edit" class="btn btn-primary btn-block">Edit Cons</button></li>
+        </ul>
+      </div>
     </div>
-    <br></br>
-
-
-    <div class="panel panel-danger">
-      <!-- Default panel contents -->
-      <div class="panel-heading"><h3>Cons:</h3></div>
-      <!-- List group -->
-      <ul class="list-group">
-        <%@list.cons.each do |con|%>
-          <li class="list-group-item"><%=con.description%> <br> Rank: <%=con.rank%></li>
-        <%end%>
-        <li class="list-group-item"><button href="/lists/<%=@list.id%>/pros/edit" class="btn btn-primary btn-block">Edit Cons</button></li>
-      </ul>
-    </div>
-
+  </div>
 </div>
+<br>
