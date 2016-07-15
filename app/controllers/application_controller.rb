@@ -46,6 +46,10 @@ class ApplicationController < Sinatra::Base
       any_nil?(params) || username_exists?(params) || email_exists?(params)
     end
 
+    def login_errors?(params)
+      any_nil?(params) || !username_exists?(params) || !password_match?(params)
+    end
+
 
     def any_nil?(params)
       [params[:username], params[:password], params[:email]].include?("")
@@ -57,6 +61,14 @@ class ApplicationController < Sinatra::Base
 
     def email_exists?(params)
       User.find_by(:email => params[:email])
+    end
+
+    def password_match?(params)
+      if username_exists?(params)
+        User.find_by(username: params[:username]).try(:authenticate, params[:password])
+      else
+        true
+      end
     end
 
 

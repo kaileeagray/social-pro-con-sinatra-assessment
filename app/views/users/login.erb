@@ -2,6 +2,21 @@
 
 
 <div class="container">
+
+  <%if @errors%>
+    <div class="panel panel-danger">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Account login failed. Please try again after fixing the following errrors:</div>
+      <!-- List group -->
+      <ul class="list-group">
+        <% @errors.each do |error|%>
+          <li class="list-group-item"><%=error%></li>
+        <%end%>
+        <li class="list-group-item">If you do not have an existing account, <a href="/signup">create one here</a>.</li>
+      </ul>
+    </div>
+  <%end%>
+
   <form action="/login" method="post" class="form-signin">
     <h2 class="form-signin-heading">Log In</h2>
       <label for="username" class="sr-only">Username:</label>
@@ -9,5 +24,9 @@
       <label for="password" class="sr-only">Password:</label>
         <input type="password" name="password" id="password" placeholder="Password" class="form-control" required/>
       <button type="submit" class="btn btn-lg btn-primary btn-block">Login to Your SocialProCon</button>
+      <br>
+      <p>
+        Don't have an account? <a href="/signup">Create a SocialProCon account here!</a>
+      </p>
   </form>
 </div>

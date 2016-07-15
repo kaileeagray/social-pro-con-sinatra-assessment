@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   post '/signup' do
     binding.pry
-    if signup_errors?(params)
+    if errors?(params)
       @errors = []
       @errors < "All fields must be completed." if any_nil?(params)
       @errors << "The username #{params[:username]} is associated to an existing account." if username_exists?(params)
