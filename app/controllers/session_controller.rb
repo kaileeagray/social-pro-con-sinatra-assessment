@@ -6,8 +6,6 @@ class SessionsController < ApplicationController
   end
 
   post '/login' do
-    binding.pry
-
     login(params[:username], params[:password])
     redirect '/lists' if logged_in?
   end
