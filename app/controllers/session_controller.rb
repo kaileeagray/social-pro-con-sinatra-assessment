@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
 
   get '/logout' do
     logout! if logged_in?
-    redirect '/login'
+    redirect '/'
   end
 
 end
