@@ -14,10 +14,6 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do
-    def any_nil?(params)
-      [params[:username], params[:password], params[:email]].include?("")
-    end
-
     def logged_in?
       !!current_user
     end
@@ -42,6 +38,24 @@ class ApplicationController < Sinatra::Base
       @current_user ||= User.find_by(:username => session[:username])
       # returns user if already set or finds and sets user
     end
+
+    def signup_errors?(params)
+      any_nil?(params) || username_exists?(params) || email_exists?(params)
+    end
+
+
+    def any_nil?(params)
+      [params[:username], params[:password], params[:email]].include?("")
+    end
+
+    def username_exists?(params)
+      User.find_by(:username => params[:username])
+    end
+
+    def email_exists?(params)
+      User.find_by(:email => params[:email])
+    end
+
 
   end
 

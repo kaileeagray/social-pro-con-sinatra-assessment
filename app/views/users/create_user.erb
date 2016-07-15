@@ -1,3 +1,8 @@
+<%binding.pry%>
+<div class="container">
+  <h1><%=@errors if @errors%></h1>
+</div>
+
 <div class="container">
   <form action="/signup" method="POST"  class="form-signin" _lpchecked="1">
     <h2 class="form-heading">Signup</h2>
@@ -6,7 +11,9 @@
     <label for="email" class="sr-only">Email:</label>
       <input type="text" name="email" id="email" placeholder="Email address" class="form-control" required autofocus/>
     <label for="password" class="sr-only">Password:</label>
-      <input type="text" name="password" id="password" placeholder="Create password" class="form-control" required />
+      <input type="text" name="password" id="password" placeholder="Create password" class="form-control" required autofocus/>
+    <label for="password" class="sr-only">Confirm Password:</label>
+      <input type="text" name="confirm_password" id="password" placeholder="Confirm password" class="form-control" required />
     <button type="submit" class="btn btn-lg btn-primary btn-block">Create Account</button>
   </form>
 </div>
