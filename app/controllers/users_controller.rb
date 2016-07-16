@@ -6,12 +6,16 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    binding.pry
-    if errors?(params)
+    params_hash = {username: params[:username],
+                  email: params[:email],
+                  password: params[:password]}
+   binding.pry
+
+    if signup_errors?(params_hash) || params[:password] != params[:confirm_password]
       @errors = []
-      @errors < "All fields must be completed." if any_nil?(params)
-      @errors << "The username #{params[:username]} is associated to an existing account." if username_exists?(params)
-      @errors << "The email #{params[:email]} is associated to an existing account." if email_exists?(params)
+      @errors < "All fields must be completed." if any_nil?(params_hash)
+      @errors << "The username #{params[:username]} is associated to an existing account." if username_exists?(params_hash)
+      @errors << "The email #{params[:email]} is associated to an existing account." if email_exists?(params_hash)
       @errors << "Passwords must match." if params["password"] != params["confirm_password"]
       erb :'/users/create_user'
     else

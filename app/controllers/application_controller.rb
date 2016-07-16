@@ -56,7 +56,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def username_exists?(params)
-      User.find_by(:username => params[:username])
+      User.find_by(username: params[:username])
     end
 
     def email_exists?(params)
