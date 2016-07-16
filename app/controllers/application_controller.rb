@@ -13,7 +13,7 @@ class ApplicationController < Sinatra::Base
     if logged_in?
       redirect "/lists"
     end
-    erb :'/index'
+    erb :'/index.html'
   end
 
   helpers do

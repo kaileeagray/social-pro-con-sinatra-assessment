@@ -25,11 +25,14 @@
     <!-- Custom styles for sticky footer/navbar template -->
     <link href="/stylesheets/sticky-footer-navbar.css" rel="stylesheet">
     <link href="/stylesheets/jumbotron.css" rel="stylesheet">
+    <link href="/stylesheets/main.css" rel="stylesheet">
 
 
   </head>
 
   <body>
+
+
 
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -47,6 +50,8 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+
+
 
         <%= yield %>
 
@@ -66,4 +71,6 @@
       <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
       <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
     <![endif]-->
+    <script src="/javascripts/main.js.erb"></script>
+
   </body>
