@@ -9,8 +9,6 @@ class UsersController < ApplicationController
     params_hash = {username: params[:username],
                   email: params[:email],
                   password: params[:password]}
-   binding.pry
-
     if signup_errors?(params_hash) || params[:password] != params[:confirm_password]
       @errors = []
       @errors < "All fields must be completed." if any_nil?(params_hash)
