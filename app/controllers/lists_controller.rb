@@ -24,14 +24,20 @@ class ListsController < ApplicationController
     end
   end
 
-    post '/list' do
-      # if logged_in? && params[:list] != ""
-      #   list = list.new(content: params[:list])
-      #   list.user_id = @current_user.id
-      #   list.save
-      # else
-      #   redirect '/lists/new'
-      # end
+    post '/lists/new' do
+      if params[:title] == ""
+        @error = "Title of list cannot be left blank."
+        erb :'/lists/create_list'
+      end
+      if logged_in? && params[:title] != ""
+        list = List.new(title: params[:title])
+        list.description = params[:description] if params[:description] != ""
+        list.user_id = current_user.id
+        list.save
+        erb :'/procons/create_procons'
+      else
+        redirect '/lists/new'
+      end
     end
 
     get '/lists/:id/edit' do
