@@ -28,6 +28,22 @@ class UsersController < ApplicationController
     erb :'/users/show_users_lists'
   end
 
+  get "/users/:name/edit" do
+    @user = User.find_by(username: params[:name])
+    erb :'/users/edit_user'
+  end
+
+  delete '/users/:name/delete' do #delete action
+    binding.pry
+    user = User.find_by(username: params[:name])
+    if logged_in? && current_user == user
+      user.delete
+      @message = "User account successfully deleted."
+    end
+    erb :'index.html'
+  end
+
+
 
 
 end

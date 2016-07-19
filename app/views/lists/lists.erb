@@ -8,12 +8,10 @@
   <div class="col-md-6">
     <div class="page-heading">
       <p class="lead">View other users' most recent Pro/Con lists:</p>
-    </div>      <%User.all.each do |user|%>
-        <%if user.id != @current_user.id%>
-          <h4><%=user.username%>'s Lists</h4>
-          <%user.lists.all.each do |list|%>
-              <a href="/lists/<%=list.id%>"><h4><%=list.title%></h4></a>
-              <p><%=list.description%></p>
+    </div>      <%List.order(:created_at).reverse do |list|%>
+        <%if list.user_id != @current_user.id%>
+          <h4><a href="/lists/<%=list.id%>"><%=list.title%></a> by <a href="/lists/<%=list.id%>"><%=list.title%></a></h4>
+          <p><%=list.description%></p>
           <%end%>
         <%end%>
       <%end%>

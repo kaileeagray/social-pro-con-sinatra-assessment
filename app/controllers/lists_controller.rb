@@ -85,7 +85,6 @@ class ListsController < ApplicationController
     end
 
     delete '/lists/:id/delete' do #delete action
-      binding.pry
       @errors = []
       list = List.find(params[:id])
       if logged_in? && list == current_user.lists.find(params[:id])
