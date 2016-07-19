@@ -1,4 +1,6 @@
-<form method="post" action="/users/<%=@user.username%>/delete">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <button type="submit" value="submit" class="btn btn-danger btn-block">Delete Account</button>
-<form>
+<div class="container">
+  <form method="post" action="/users/<%=@user.username%>/delete">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <button type="submit" value="submit" class="btn btn-danger btn-block">Delete Account</button>
+  <form>
+</div>
