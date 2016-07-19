@@ -5,12 +5,19 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  def slug
-    self.username.gsub(" ", "-")
-  end
 
-  def self.find_by_slug(slug)
-    find_by(username: slug.gsub("-", " "))
+  def clear_data
+    self.lists.each do |list|
+      list.pros.each do |pro|
+        pro.delete
+      end
+      list.cons.each do |con|
+        con.delete
+      end
+      list.delete
+    end
+    self.lists.clear
+    self.delete
   end
 
 end

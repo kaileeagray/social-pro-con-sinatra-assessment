@@ -36,17 +36,8 @@ class UsersController < ApplicationController
   delete '/users/:name/delete' do #delete action
     user = User.find_by(username: params[:name])
     if logged_in? && current_user == user
-      user.lists.each do |list|
-        list.delete
-        list.pros.each do |pro|
-          pro.delete
-        end
-        list.cons.each do |con|
-          con.delete
-        end
-      end
-      user.lists.clear
-      user.delete
+      logged_in? == false
+      user.clear_data
       @message = "User account successfully deleted."
     end
     erb :'index.html'

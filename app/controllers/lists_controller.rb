@@ -4,7 +4,7 @@ class ListsController < ApplicationController
     if logged_in?
         erb :'lists/lists'
     else
-      redirect '/login'
+      redirect '/'
     end
   end
 
