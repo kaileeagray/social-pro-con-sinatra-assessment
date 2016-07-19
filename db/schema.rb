@@ -14,29 +14,39 @@
 ActiveRecord::Schema.define(version: 20160713185944) do
 
   create_table "cons", force: :cascade do |t|
-    t.integer "list_id"
-    t.integer "user_id"
-    t.integer "rank"
-    t.string  "description"
+    t.integer  "list_id"
+    t.integer  "user_id"
+    t.float    "rank"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "lists", force: :cascade do |t|
-    t.string  "title"
-    t.text    "description"
-    t.integer "user_id"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "user_id"
+    t.float    "pro_sum"
+    t.float    "con_sum"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "pros", force: :cascade do |t|
-    t.integer "list_id"
-    t.integer "user_id"
-    t.integer "rank"
-    t.string  "description"
+    t.integer  "list_id"
+    t.integer  "user_id"
+    t.float    "rank"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "email"
-    t.string "password_digest"
+    t.string   "username"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end

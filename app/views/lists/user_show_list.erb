@@ -31,6 +31,16 @@
               </div>
             </li>
           <%end%>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-2 col-md-offset-8">
+                  <h5>Total:</h5>
+              </div>
+              <div class="col-md-2">
+                  <h5>+<%=@list.pro_sum%></h5>
+              </div>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
@@ -48,6 +58,16 @@
             </div>
           </li>
           <%end%>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-2 col-md-offset-8">
+                  <h5>Total:</h5>
+              </div>
+              <div class="col-md-2">
+                  <h5>-<%=@list.con_sum%></h5>
+              </div>
+            </div>
+          </li>
         </ul>
       </div>
     </div>

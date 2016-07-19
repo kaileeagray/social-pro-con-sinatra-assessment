@@ -28,4 +28,6 @@ class UsersController < ApplicationController
     erb :'/users/show_users_lists'
   end
 
+
+
 end

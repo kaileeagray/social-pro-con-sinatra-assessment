@@ -1,12 +1,10 @@
 <div class="container">
   <div class="page-header">
     <h1><%=@list.title if @list%> <small><%=@list.description%></small></h1>
-    <h3>by <%=User.find(@list.user_id).username%></h3>
+    <h3>by <a href="/users/<%=User.find(@list.user_id).username%>"><%=User.find(@list.user_id).username%></a></h3>
   </div>
 
-  <br></br>
-  <div class="container">
-    <div class="row">
+  <div class="row">
       <div class="col-md-6">
         <div class="panel panel-success">
           <!-- Default panel contents -->
@@ -15,17 +13,27 @@
           <ul class="list-group">
             <%@list.pros.each do |pro|%>
               <li class="list-group-item">
-                  <div class="row">
-                    <div class="col-md-10"><%=pro.description%></div>
-                    <div class="col-md-2">+<%=pro.rank%></div>
-                  </div>
-                </li>
+                <div class="row">
+                  <div class="col-md-10"><%=pro.description%></div>
+                  <div class="col-md-2">+<%=pro.rank%></div>
+                </div>
+              </li>
             <%end%>
-            <li class="list-group-item"><button href="/lists/<%=@list.id%>/pros/edit" class="btn btn-primary btn-block">Add New Pros</button></li>
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-2 col-md-offset-8">
+                    <h5>Total:</h5>
+                </div>
+                <div class="col-md-2">
+                    <h5>+<%=@list.pro_sum%></h5>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item"><button href="/lists/<%=@list.id%>/pros/edit" class="btn btn-primary btn-block">Suggest Pro</button></li>
+
           </ul>
         </div>
       </div>
-
       <div class="col-md-6">
         <div class="panel panel-danger">
           <!-- Default panel contents -->
@@ -34,16 +42,28 @@
           <ul class="list-group">
             <%@list.cons.each do |con|%>
             <li class="list-group-item">
-                <div class="row">
-                  <div class="col-md-10"><%=con.description%></div>
-                  <div class="col-md-2">-<%=con.rank%></div>
-                </div>
-              </li>
+              <div class="row">
+                <div class="col-md-10"><%=con.description%></div>
+                <div class="col-md-2">-<%=con.rank%></div>
+              </div>
+            </li>
             <%end%>
-            <li class="list-group-item"><button href="/lists/<%=@list.id%>/pros/edit" class="btn btn-primary btn-block">Add New Cons</button></li>
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-2 col-md-offset-8">
+                    <h5>Total:</h5>
+                </div>
+                <div class="col-md-2">
+                    <h5>-<%=@list.con_sum%></h5>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item"><button href="/lists/<%=@list.id%>/pros/edit" class="btn btn-primary btn-block">Suggest Con</button></li>
           </ul>
         </div>
       </div>
+
     </div>
+    <br></br>
+
   </div>
-</div>
