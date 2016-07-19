@@ -1,13 +1,13 @@
 <div class="container">
   <div class="page-header">
-    <h1><%=@list.title if @list%></h1> <h3><%=@list.description%></h3>
+    <h1><%=@list.title if @list%> <small><%=@list.description%></small></h1>
   </div>
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-2 col-md-offset-8">
       <button href="/lists/<%=@list.id%>/edit" class="btn btn-primary btn-block">Edit list</button>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-2">
       <form method="post" action="/lists/<%=@list.id%>/delete">
         <input id="hidden" type="hidden" name="_method" value="delete">
         <button type="submit" value="submit" class="btn btn-danger btn-block">Delete list</button>
@@ -24,9 +24,13 @@
         <!-- List group -->
         <ul class="list-group">
           <%@list.pros.each do |pro|%>
-            <li class="list-group-item"><%=pro.description%> <br> Rank: <%=pro.rank%></li>
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-10"><%=pro.description%></div>
+                <div class="col-md-2">+<%=pro.rank%></div>
+              </div>
+            </li>
           <%end%>
-          <li class="list-group-item"><button href="/lists/<%=@list.id%>/pros/edit" class="btn btn-primary btn-block">Edit Pros</button></li>
         </ul>
       </div>
     </div>
@@ -37,12 +41,17 @@
         <!-- List group -->
         <ul class="list-group">
           <%@list.cons.each do |con|%>
-            <li class="list-group-item"><%=con.description%> <br> Rank: <%=con.rank%></li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-10"><%=con.description%></div>
+              <div class="col-md-2">-<%=con.rank%></div>
+            </div>
+          </li>
           <%end%>
-          <li class="list-group-item"><button href="/lists/<%=@list.id%>/pros/edit" class="btn btn-primary btn-block">Edit Cons</button></li>
         </ul>
       </div>
     </div>
+
   </div>
   <br></br>
 

@@ -34,6 +34,26 @@ class ListsController < ApplicationController
       # end
     end
 
+    get '/lists/:id/edit' do
+
+      @list = List.find(params[:id].to_i)
+      erb :'/lists/edit_list'
+      # if current_user.lists.include?(@list) && logged_in?
+      #
+      # else
+      #   erb :'/lists/show_list'
+      # end
+      # if !logged_in?
+      #   redirect "/login" # redirect if not logged in
+      # else
+      #   if list = current_user.lists.find_by(params[:id])
+      #     erb :'/lists/edit_list'
+      #   else
+      #     redirect '/lists'
+      #   end
+      # end
+    end
+
     get '/lists/:id' do
       @list = List.find(params[:id].to_i)
       if current_user.lists.include?(@list) && logged_in?
@@ -51,23 +71,7 @@ class ListsController < ApplicationController
 
 
 
-    get '/lists/:id/edit' do
-      @list = List.find(params[:id].to_i)
-      if current_user.lists.include?(@list) && logged_in?
-        erb :'/lists/edit_list'
-      else
-        erb :'/lists/show_list'
-      end
-      # if !logged_in?
-      #   redirect "/login" # redirect if not logged in
-      # else
-      #   if list = current_user.lists.find_by(params[:id])
-      #     erb :'/lists/edit_list'
-      #   else
-      #     redirect '/lists'
-      #   end
-      # end
-    end
+
 
     post '/lists/:id/edit' do
       # if !logged_in?
@@ -81,11 +85,18 @@ class ListsController < ApplicationController
     end
 
     delete '/lists/:id/delete' do #delete action
+      binding.pry
+      @errors = []
       list = List.find(params[:id])
-      if logged_in? && list == current_user.lists.find_by(params[:id])
+      if logged_in? && list == current_user.lists.find(params[:id])
         list.delete
+        redirect "/lists"
+      else
+        @errors << "Sorry, your delete action cannot be completed because you were not logged in. Please try again." if !logged_in?
+        @errors << "Sorry, your delete action cannot be completed. You may only delete your own lists. Please try again." if list != current_user.lists.find(params[:id])
+        erb :"/users/lists/#{params[:id]}"
       end
-      redirect "/lists"
+
     end
 
     get '/lists/:id/procons/new' do

@@ -14,7 +14,12 @@
           <!-- List group -->
           <ul class="list-group">
             <%@list.pros.each do |pro|%>
-              <li class="list-group-item"><%=pro.description%> <br> Rank: <%=pro.rank%></li>
+              <li class="list-group-item">
+                  <div class="row">
+                    <div class="col-md-10"><%=pro.description%></div>
+                    <div class="col-md-2">+<%=pro.rank%></div>
+                  </div>
+                </li>
             <%end%>
             <li class="list-group-item"><button href="/lists/<%=@list.id%>/pros/edit" class="btn btn-primary btn-block">Add New Pros</button></li>
           </ul>
@@ -28,7 +33,12 @@
           <!-- List group -->
           <ul class="list-group">
             <%@list.cons.each do |con|%>
-              <li class="list-group-item"><%=con.description%> <br> Rank: <%=con.rank%></li>
+            <li class="list-group-item">
+                <div class="row">
+                  <div class="col-md-10"><%=con.description%></div>
+                  <div class="col-md-2">-<%=con.rank%></div>
+                </div>
+              </li>
             <%end%>
             <li class="list-group-item"><button href="/lists/<%=@list.id%>/pros/edit" class="btn btn-primary btn-block">Add New Cons</button></li>
           </ul>
