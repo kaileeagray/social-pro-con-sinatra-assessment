@@ -12,4 +12,8 @@ class List < ActiveRecord::Base
     self.con_sum = self.cons.inject(0){|sum,x| sum + x.rank }
   end
 
+  def pro_con_sum
+    self.pro_sum - self.con_sum
+  end
+
 end

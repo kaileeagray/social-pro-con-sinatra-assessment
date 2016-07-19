@@ -47,7 +47,10 @@
     <div class="col-md-6">
       <div class="panel panel-danger">
         <!-- Default panel contents -->
-        <div class="panel-heading"><h3>Cons:</h3></div>
+        <div class="panel-heading"> <h3>
+          Cons</h3>
+          Significance ranked from 0 to 10.
+        </div>
         <!-- List group -->
         <ul class="list-group">
           <%@list.cons.each do |con|%>
@@ -71,8 +74,19 @@
         </ul>
       </div>
     </div>
+  </div>
+
+  <div class="row">
+      <%if @list.pro_con_sum > 0%>
+        <div class="alert alert-success" role="alert"> <h3 class="text-center">Pro/Con Rank Total: <%=@list.pro_con_sum%></h3></div>
+      <%elsif @list.pro_con_sum == 0%>
+        <div class="alert alert-info" role="alert"> <h3 class="text-center">Pro/Con Rank Total: <%=@list.pro_con_sum%></h3></div>
+      <%else%>
+        <div class="alert alert-danger" role="alert" > <h3 class="text-center">Pro/Con Rank Total: <%=@list.pro_con_sum%></h3></div>
+      <%end%>
 
   </div>
-  <br></br>
 
 </div>
+
+  <br></br>
