@@ -20,7 +20,8 @@ class SessionsController < ApplicationController
 
   get '/logout' do
     logout! if logged_in?
-    redirect '/'
+    @message = "Successfully logged out. Come back soon!"
+    erb :'/index.html'
   end
 
 end

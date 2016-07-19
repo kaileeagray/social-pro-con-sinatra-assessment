@@ -1,6 +1,12 @@
 <style> .navbar  { display: none;}</style>
-<div class="panel-heading">
-  <%=@message if @message%>
+<div class="container">
+  <%if @message%>
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <%=@message%>
+      </div>
+    </div>
+  <%end%>
 </div>
 
   <div class="jumbotron">
@@ -9,7 +15,7 @@
       <p>Create, save, and edit your own pro con lists. View and contribute to your friends' pro con lists.</p>
       <div class="row">
         <div class="col-md-6">
-          <p><a class="btn btn-primary btn-block" href="/login" role="button">Log In &raquo;</a></p>
+          <p><a class="btn btn-success btn-block" href="/login" role="button">Log In &raquo;</a></p>
         </div>
         <div class="col-md-6">
           <p><a class="btn btn-primary btn-block" href="/signup" role="button">Create Account &raquo;</a></p>
