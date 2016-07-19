@@ -2,27 +2,35 @@
 
   <div class="page-heading">
     <h1>Welcome, <%=@current_user.username if @current_user%>!</h1>
-    <p class="lead">View and edit your Pro/Con Lists:</p>
   </div>
 
-  <%@current_user.lists.all.each do |list|%>
-      <a href="/lists/<%=list.id%>"><h4><%=list.title%></h4></a>
-      <p><%=list.description%></p>
-
-  <%end%>
-
-  <br></br>
-
-    <h2>View all users' lists:</h2>
-      <%User.all.each do |user|%>
+<div class="row">
+  <div class="col-md-6">
+    <div class="page-heading">
+      <p class="lead">View other users' most recent Pro/Con lists:</p>
+    </div>      <%User.all.each do |user|%>
         <%if user.id != @current_user.id%>
-          <h3>User: <%=user.username%></h3>
+          <h4><%=user.username%>'s Lists</h4>
           <%user.lists.all.each do |list|%>
               <a href="/lists/<%=list.id%>"><h4><%=list.title%></h4></a>
               <p><%=list.description%></p>
           <%end%>
         <%end%>
       <%end%>
-      <br></br>
+    </div>
+
+    <div class="col-md-6">
+
+      <div class="page-heading">
+        <p class="lead">View and edit your Pro/Con lists:</p>
+      </div>
+
+      <%@current_user.lists.all.each do |list|%>
+          <a href="/lists/<%=list.id%>"><h4><%=list.title%></h4></a>
+          <p><%=list.description%></p>
+      <%end%>
+    </div>
+  </div>
+  <br></br>
 
 </div>
