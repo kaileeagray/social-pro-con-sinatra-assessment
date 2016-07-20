@@ -23,4 +23,5 @@ body {
 
 .table thead{
     background-color: white;
+    text-justify: left;
 }
