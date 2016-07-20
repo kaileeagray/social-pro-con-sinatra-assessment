@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20160713185944) do
   create_table "cons", force: :cascade do |t|
     t.integer  "list_id"
     t.integer  "user_id"
-    t.float    "rank"
+    t.integer  "weight"
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20160713185944) do
     t.string   "title"
     t.text     "description"
     t.integer  "user_id"
-    t.float    "pro_sum"
-    t.float    "con_sum"
+    t.integer  "pro_sum"
+    t.integer  "con_sum"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20160713185944) do
   create_table "pros", force: :cascade do |t|
     t.integer  "list_id"
     t.integer  "user_id"
-    t.float    "rank"
+    t.integer  "weight"
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false

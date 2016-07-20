@@ -3,7 +3,7 @@ class CreatePros < ActiveRecord::Migration
     create_table :pros do |t|
       t.integer :list_id
       t.integer :user_id
-      t.float :rank
+      t.integer :weight
       t.string :description
       t.timestamps null: false
     end
