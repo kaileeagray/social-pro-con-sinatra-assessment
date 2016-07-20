@@ -7,12 +7,12 @@ Sinatra CRUD app for creating and managing pro con lists. Users must create an a
 ### Installation
 
 1. Fork and clone repo to your local machine
-2. Use 'bundle install' to install dependencies.
+2. Use `bundle install` to install dependencies.
 
 ### Usage
 
 1. Run `rake db:mirgrate`.
-2. Run `shotgun`. Then you can go to your browser and view the application.
+2. Use `shotgun` to load application onto your server. Then, use your browser to visit the address listed. For example, if the application is being served on port `9393`, the application will respond to requests at `http://127.0.0.1:9393` or `localhost:9393`.   
 
 ### Contributing
 
