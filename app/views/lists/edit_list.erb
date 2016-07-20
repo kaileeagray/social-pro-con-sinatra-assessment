@@ -10,12 +10,12 @@
   <form action="/lists/<%=@list.id%>/edit" method="POST">
     <div class="form-group">
       <label for="title">Title of List: </label>
-      <textarea name="title" class="form-control" rows="1"><%=@list.title%></textarea>
+      <textarea name="title" class="form-control" rows="1" required autofocus><%=@list.title%></textarea>
 
     </div><br>
     <div class="form-group">
       <label for="description">Description: </label>
-      <textarea name="description" class="form-control" rows="3"><%=@list.description%></textarea>
+      <textarea name="description" class="form-control" rows="3" required autofocus><%=@list.description%></textarea>
     </div>
     <button type="submit" class="btn btn-primary btn-block">Next</button>
   </form>

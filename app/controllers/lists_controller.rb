@@ -79,14 +79,15 @@ class ListsController < ApplicationController
 
 
     post '/lists/:id/edit' do
-      # if !logged_in?
-      #   redirect "/login" # redirect if not logged in
-      # elsif params[:list] == ""
-      #   erb :'/lists/edit_list'
-      # else
-      #   current_user.lists.find_by(params[:id]).update(content: params[:list])
-      #   redirect '/lists'
-      # end
+      @list = List.find(params[:id])
+      if !logged_in?
+        redirect "/login" # redirect if not logged in
+      elsif params[:title] == " " || params[:description] == " "
+        erb :'/lists/edit_list'
+      else
+        current_user.lists.find_by(params[:id]).update(title: params[:title], description: params[:description])
+        redirect "/lists/#{@list.id}"
+      end
     end
 
     delete '/lists/:id/delete' do #delete action
@@ -106,7 +107,7 @@ class ListsController < ApplicationController
     get '/lists/:id/procons/new' do
       @list = List.find(params[:id].to_i)
       if current_user.lists.include?(@list) && logged_in?
-        redirect "/lists/#{params[:id]}/edit"
+        erb :'/procons/edit_procons'
       else
         erb :'/procons/suggest_procons'
       end
