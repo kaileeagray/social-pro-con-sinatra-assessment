@@ -1,9 +1,15 @@
 <div class="container">
-  <div class="page-header">
-    <h1><%=@list.title if @list%> <small><%=@list.description%></small></h1>
-    <h3>by <a href="/users/<%=User.find(@list.user_id).username%>"><%=User.find(@list.user_id).username%></a></h3>
-  </div>
 
+  <div class="page-header">
+    <div class="row">
+      <div class="col-md-10">
+        <h1><%=@list.title if @list%> <small><%=@list.description%></small></h1>
+      </div>
+      <div class="col-md-2 center">
+        <a href="/lists/<%=@list.id%>/edit" class="btn btn-primary btn-block" role="button">Add Pros and Cons</a>
+      </div>
+    </div>
+  </div>
   <div class="row">
       <div class="col-md-6">
         <div class="panel panel-success">
@@ -15,7 +21,7 @@
               <li class="list-group-item">
                 <div class="row">
                   <div class="col-md-10"><%=pro.description%></div>
-                  <div class="col-md-2">+<%=pro.rank%></div>
+                  <div class="col-md-2"><%=pro.rank%></div>
                 </div>
               </li>
             <%end%>
@@ -25,12 +31,10 @@
                     <h5>Total:</h5>
                 </div>
                 <div class="col-md-2">
-                    <h5>+<%=@list.pro_sum%></h5>
+                    <h5><%=@list.pro_sum%></h5>
                 </div>
               </div>
             </li>
-            <li class="list-group-item"><button href="/lists/<%=@list.id%>/pros/edit" class="btn btn-primary btn-block">Suggest Pro</button></li>
-
           </ul>
         </div>
       </div>
@@ -44,7 +48,7 @@
             <li class="list-group-item">
               <div class="row">
                 <div class="col-md-10"><%=con.description%></div>
-                <div class="col-md-2">-<%=con.rank%></div>
+                <div class="col-md-2"><%=con.rank%></div>
               </div>
             </li>
             <%end%>
@@ -54,11 +58,10 @@
                     <h5>Total:</h5>
                 </div>
                 <div class="col-md-2">
-                    <h5>-<%=@list.con_sum%></h5>
+                    <h5><%=@list.con_sum%></h5>
                 </div>
               </div>
             </li>
-            <li class="list-group-item"><button href="/lists/<%=@list.id%>/pros/edit" class="btn btn-primary btn-block">Suggest Con</button></li>
           </ul>
         </div>
       </div>

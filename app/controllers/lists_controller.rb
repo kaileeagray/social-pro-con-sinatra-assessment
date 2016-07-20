@@ -85,7 +85,7 @@ class ListsController < ApplicationController
     list = List.find(params[:id])
     if logged_in? && list == current_user.lists.find(params[:id])
       list.delete
-      redirect "/lists"
+      redirect "/users/#{current_user.username}"
     else
       @errors << "Sorry, your delete action cannot be completed because you were not logged in. Please try again." if !logged_in?
       @errors << "Sorry, your delete action cannot be completed. You may only delete your own lists. Please try again." if list != current_user.lists.find(params[:id])

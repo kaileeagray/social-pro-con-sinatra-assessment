@@ -1,12 +1,17 @@
 <div class="container">
-<%=@list.title%>, <%=@list.description%>
-
-<div class="row">
+  <div class="container">
+      <div class="page-heading">
+      <h1><%=@list.title%> <small><%=@list.description%></small></h1>
+      </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
       <div class="control-group" id="fields">
-          <label class="control-label" for="field1">Nice Multiple Form Fields</label>
+          <label class="control-label" for="field1">Create, Edit, or Delete Pros</label>
           <div class="controls">
               <form role="form" autocomplete="off">
-                  <div class="entry input-group col-xs-3">
+                  <div class="entry input-group col-md-3">
                       <input class="form-control" name="fields[]" type="text" placeholder="Type something" />
                     <span class="input-group-btn">
                           <button class="btn btn-success btn-add" type="button">
@@ -14,10 +19,14 @@
                           </button>
                       </span>
                   </div>
+                  <button type="submit" class="btn btn-primary btn-block">Next</button>
               </form>
           <br>
           <small>Press <span class="glyphicon glyphicon-plus gs"></span> to add another form field :)</small>
           </div>
+        </div>
       </div>
-</div>
+    </div>
+  </div>
+
 </div>
