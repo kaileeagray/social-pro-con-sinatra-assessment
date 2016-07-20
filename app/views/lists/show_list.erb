@@ -64,6 +64,18 @@
       </div>
 
     </div>
+    <div class="container">
+      <div class="row">
+        <%if @list.pro_con_sum > 0%>
+          <div class="alert alert-success" role="alert"> <h3 class="text-center">Pro/Con Rank Total: <%=@list.pro_con_sum%></h3></div>
+        <%elsif @list.pro_con_sum == 0%>
+          <div class="alert alert-info" role="alert"> <h3 class="text-center">Pro/Con Rank Total: <%=@list.pro_con_sum%></h3></div>
+        <%else%>
+          <div class="alert alert-danger" role="alert" > <h3 class="text-center">Pro/Con Rank Total: <%=@list.pro_con_sum%></h3></div>
+        <%end%>
+      </div>
+    </div>
+
     <br></br>
 
   </div>
