@@ -50,9 +50,19 @@
                 <li><a href="/users/<%=current_user.username%>/edit">Account Settings</a></li>
                 <li><a href="/lists/new">New List</a></li>
                 <li><a href="/lists">Search By User</a></li>
-                <li><a href="/logout">Logout</a></li>
               </ul>
-            </div>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="/users/<%=current_user.username%>">Welcome, <%=current_user.username%>!</a></li>
+              <li><a href="/logout">Logout</a></li>
+          </ul>
+        </div>
+
+          <!-- <ul class="nav navbar-nav navbar-right">
+                      <li><a href="../navbar/">Default</a></li>
+                      <li class="active"><a href="./">Static top <span class="sr-only">(current)</span></a></li>
+                      <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+                    </ul> -->
+
           </div>
         </nav>
       <%end%>
