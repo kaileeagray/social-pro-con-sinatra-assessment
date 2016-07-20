@@ -74,13 +74,9 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
     if !logged_in?
       redirect "/login" # redirect if not logged in
-    elsif params[:title] == " " || params[:description] == " "
-      erb :'/lists/edit_list'
-    elsif params[:title] == @list.title && params[:description] == @list.description
-      redirect "/lists/#{@list.id}"
     else
-      current_user.lists.find_by(params[:id]).update(title: params[:title], description: params[:description])
-      redirect "/lists/#{@list.id}"
+      current_user.lists.find(params[:id]).update(title: params[:title], description: params[:description])
+      redirect "/lists/#{@list.id}/procons/new"
     end
   end
 
