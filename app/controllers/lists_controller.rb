@@ -41,7 +41,6 @@ class ListsController < ApplicationController
     end
 
     get '/lists/:id/edit' do
-
       @list = List.find(params[:id].to_i)
       erb :'/lists/edit_list'
       # if current_user.lists.include?(@list) && logged_in?

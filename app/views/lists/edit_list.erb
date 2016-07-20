@@ -1,59 +1,22 @@
+<%if @error%>
+  <div class="panel panel-danger">
+    <div class="panel-heading">List creation failed. <%=@error%></div>
+  </div>
+<%end%>
+
 <div class="container">
-  <div class="page-header">
-    <h1><%=@list.title if @list%> <small><%=@list.description%></small></h1>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6">
-      <button href="/lists/<%=@list.id%>/edit" class="btn btn-primary btn-block">Edit list</button>
-    </div>
-    <div class="col-md-6">
-      <form method="post" action="/lists/<%=@list.id%>/delete">
-        <input id="hidden" type="hidden" name="_method" value="delete">
-        <button type="submit" value="submit" class="btn btn-danger btn-block">Delete list</button>
-      <form>
-    </div>
-  </div>
-
+  <h1>Edit Pro/Con List</h1>
   <br></br>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="panel panel-success">
-        <!-- Default panel contents -->
-        <div class="panel-heading"><h3>Pros:</h3></div>
-        <!-- List group -->
-        <ul class="list-group">
-          <%@list.pros.each do |pro|%>
-            <li class="list-group-item">
-              <div class="row">
-                <div class="col-md-10"><%=pro.description%></div>
-                <div class="col-md-2">+<%=pro.rank%></div>
-              </div>
-            </li>
-          <%end%>
-          <li class="list-group-item"><button href="/lists/<%=@list.id%>/pros/edit" class="btn btn-primary btn-block">Edit Pros</button></li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="panel panel-danger">
-        <!-- Default panel contents -->
-        <div class="panel-heading"><h3>Cons:</h3></div>
-        <!-- List group -->
-        <ul class="list-group">
-          <%@list.cons.each do |con|%>
-          <li class="list-group-item">
-            <div class="row">
-              <div class="col-md-10"><%=con.description%></div>
-              <div class="col-md-2">-<%=con.rank%></div>
-            </div>
-          </li>
-          <%end%>
-          <li class="list-group-item"><button href="/lists/<%=@list.id%>/pros/edit" class="btn btn-primary btn-block">Edit Cons</button></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <br></br>
+  <form action="/lists/<%=@list.id%>/edit" method="POST">
+    <div class="form-group">
+      <label for="title">Title of List: </label>
+      <textarea name="title" class="form-control" rows="1"><%=@list.title%></textarea>
 
+    </div><br>
+    <div class="form-group">
+      <label for="description">Description: </label>
+      <textarea name="description" class="form-control" rows="3"><%=@list.description%></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Next</button>
+  </form>
 </div>
