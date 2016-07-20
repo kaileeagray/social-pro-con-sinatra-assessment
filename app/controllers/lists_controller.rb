@@ -99,7 +99,7 @@ class ListsController < ApplicationController
     if current_user.lists.include?(@list) && logged_in?
       erb :'/procons/edit_procons'
     else
-      erb :'/procons/suggest_procons'
+      erb :'/procons/add_procon'
     end
   end
 

@@ -22,16 +22,30 @@
     <div class="col-md-6">
       <div class="panel panel-success">
         <!-- Default panel contents -->
-        <div class="panel-heading"> <h4 class="text-center">Pros</h4></div>
+        <div class="panel-heading"> <h4 class="text-center">Your Pros</h4></div>
         <!-- List group -->
         <ul class="list-group">
-          <%@list.pros.each do |pro|%>
-            <li class="list-group-item">
-              <div class="row">
-                <div class="col-md-10"><%=pro.description%></div>
-                <div class="col-md-2"><%=pro.weight%></div>
-              </div>
-            </li>
+          <%@list.pros.where(user_id: current_user.id).each do |pro|%>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-10"><%=pro.description%></div>
+              <div class="col-md-2"><%=pro.weight%></div>
+            </div>
+          </li>
+          <%end%>
+        </ul>
+
+        <div class="panel-heading"> <h4 class="text-center">Pros from Other Users</h4></div>
+        <!-- List group -->
+        <ul class="list-group">
+          <%@list.pros.where.not(user_id: current_user.id).each do |pro|%>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-10"><%=pro.description%></div>
+              <div class="col-md-2"><%=pro.weight%></div>
+            </div>
+             by <a href="/users/<%=User.find(pro.user_id).username%>"><%=User.find(pro.user_id).username%></a>
+          </li>
           <%end%>
           <li class="list-group-item">
             <div class="row">
@@ -46,18 +60,33 @@
         </ul>
       </div>
     </div>
+
     <div class="col-md-6">
       <div class="panel panel-danger">
         <!-- Default panel contents -->
-        <div class="panel-heading"> <h4 class="text-center">Cons</h4></div>
+        <div class="panel-heading"> <h4 class="text-center">Your Cons</h4></div>
         <!-- List group -->
         <ul class="list-group">
-          <%@list.cons.each do |con|%>
+          <%@list.cons.where(user_id: current_user.id).each do |con|%>
           <li class="list-group-item">
             <div class="row">
               <div class="col-md-10"><%=con.description%></div>
               <div class="col-md-2"><%=con.weight%></div>
             </div>
+          </li>
+          <%end%>
+        </ul>
+
+        <div class="panel-heading"> <h4 class="text-center">Cons from Other Users</h4></div>
+        <!-- List group -->
+        <ul class="list-group">
+          <%@list.cons.where.not(user_id: current_user.id).each do |con|%>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-10"><%=con.description%></div>
+              <div class="col-md-2"><%=con.weight%></div>
+            </div>
+             by <a href="/users/<%=User.find(con.user_id).username%>"><%=User.find(con.user_id).username%></a>
           </li>
           <%end%>
           <li class="list-group-item">
@@ -83,7 +112,6 @@
       <%else%>
         <div class="alert alert-danger" role="alert" > <h3 class="text-center">Pro/Con Rank Total: <%=@list.pro_con_sum%></h3></div>
       <%end%>
-
   </div>
 
 </div>
