@@ -1,25 +1,26 @@
-<style> .navbar  { display: none;}</style>
-<div class="container">
-  <%if @message%>
-    <div class="panel panel-danger">
-      <div class="panel-heading">
-        <%=@message%>
-      </div>
-    </div>
-  <%end%>
-</div>
-
-  <div class="jumbotron">
-    <div class="container">
-      <h1>Welcome to SocialProCon!</h1>
-      <p>Create, save, and edit pro con lists. View and contribute to your friends' pro con lists.</p>
-      <div class="row">
-        <div class="col-md-6">
-          <p><a class="btn btn-success btn-block" href="/login" role="button">Log In &raquo;</a></p>
-        </div>
-        <div class="col-md-6">
-          <p><a class="btn btn-primary btn-block" href="/signup" role="button">Create Account &raquo;</a></p>
+<div class="index-page">
+  <div class="container">
+    <%if @message%>
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <%=@message%>
         </div>
       </div>
-    </div>
+    <%end%>
   </div>
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Welcome to SocialProCon!</h1>
+        <p>Create, save, and edit pro con lists. View and contribute to your friends' pro con lists.</p>
+        <div class="row">
+          <div class="col-md-6">
+            <p><a class="btn btn-success btn-block" href="/login" role="button">Log In &raquo;</a></p>
+          </div>
+          <div class="col-md-6">
+            <p><a class="btn btn-primary btn-block" href="/signup" role="button">Create Account &raquo;</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

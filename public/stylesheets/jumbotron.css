@@ -1,13 +1,15 @@
 
-/* Move down content because we have a fixed navbar that is 50px tall */
-body {
-  padding-top: 0;
-  padding-bottom: 0;
+/*move page up - no navbar on homepage*/
+.index-page {
+  margin-top: -50px;
+
 }
+.index-page navbar  { display: none;}
+
+
 
 
 .jumbotron {
-
     position: fixed;
     background: url("../../images/unsplash-notes-computer.jpeg") center center;
     width: 100%;
