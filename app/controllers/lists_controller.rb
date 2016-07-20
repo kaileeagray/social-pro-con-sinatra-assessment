@@ -30,10 +30,10 @@ class ListsController < ApplicationController
         erb :'/lists/create_list'
       end
       if logged_in? && params[:title] != ""
-        list = List.new(title: params[:title])
-        list.description = params[:description] if params[:description] != ""
-        list.user_id = current_user.id
-        list.save
+        @list = List.new(title: params[:title])
+        @list.description = params[:description] if params[:description] != ""
+        @list.user_id = current_user.id
+        @list.save
         erb :'/procons/create_procons'
       else
         redirect '/lists/new'
