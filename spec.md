@@ -8,8 +8,9 @@ Specs:
 - [x] Include user accounts
 - [x] Ensure that users can't modify content created by other users (users are allowed to suggest pro/cons to other users but not edit title, description, or delete)
 - [x] Include user input validations -- validations complete for log in and account creation
+      Bootstrap prevents blank fields dynamically.
 - [x] Display validation failures to user with error message -- errors with login, account creation. add to create, edit list/pro/con
-- [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+- [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
 
 Confirm
 - [x] You have a large number of small Git commits

@@ -21,7 +21,18 @@ body {
     cursor: move;
 }
 
+.table td, .table th {
+    border: none;
+}
+
+
 .table thead{
     background-color: white;
     text-justify: left;
+
+}
+
+.table tbody {
+  background-color: white;
+
 }
