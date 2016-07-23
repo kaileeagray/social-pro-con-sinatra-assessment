@@ -6,6 +6,7 @@ end
 
 use Rack::MethodOverride
 use UsersController
+use ProConController
 use ListsController
 use SessionsController
 run ApplicationController

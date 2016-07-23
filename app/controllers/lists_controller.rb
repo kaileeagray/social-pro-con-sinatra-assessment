@@ -58,12 +58,6 @@ class ListsController < ApplicationController
     else
       erb :'/lists/show_list'
     end
-    # if logged_in?
-    #   @list = list.find(params[:id].to_i)
-    #   erb :'/lists/show_list'
-    # else
-    #   redirect '/login'
-    # end
   end
 
 
@@ -91,52 +85,6 @@ class ListsController < ApplicationController
       @errors << "Sorry, your delete action cannot be completed. You may only delete your own lists. Please try again." if list != current_user.lists.find(params[:id])
       erb :"/users/lists/#{params[:id]}"
     end
-
   end
-
-  get '/lists/:list_id/:procon/new' do
-    @list = List.find(params[:list_id])
-    @procon = params[:procon]
-    erb :"/procons/create_procons"
-  end
-
-  get '/lists/:list_id/:procon/:procon_id/edit' do
-    @list = List.find(params[:list_id])
-    @procon = params[:procon]
-    @item = params[:procon].classify.constantize.find(params[:procon_id])
-    erb :"/procons/edit_procons"
-    # @list = List.find(params[:id].to_i)
-    # if current_user.lists.include?(@list) && logged_in?
-    #   erb :'/procons/edit_procons'
-    # else
-    #   erb :'/procons/add_procon'
-    # end
-  end
-
-  get '/lists/:list_id/:procon/:procon_id/delete' do
-    binding.pry
-    params[:procon].classify.constantize.find(params[:procon_id]).delete
-    redirect "/lists/#{params[:list_id]}"
-      # @list = List.find(params[:id].to_i)
-    # if current_user.lists.include?(@list) && logged_in?
-    #   erb :'/procons/edit_procons'
-    # else
-    #   erb :'/procons/add_procon'
-    # end
-  end
-
-  post '/lists/:list_id/:procon/new' do
-    @list = List.find(params[:list_id])
-    params[:procon].classify.constantize.create(user_id: current_user.id, list_id: @list.id, weight: params[:weight], description: params[:description])
-
-    redirect "/lists/#{@list.id}"
-  end
-
-  post '/lists/:list_id/:procon/:procon_id/edit' do
-    procon = params[:procon].classify.constantize.find(params[:procon_id])
-    procon.update(description: params[:description], weight: params[:weight])    # @list = List.find(params[:id].to_i)
-    redirect "/lists/#{params[:list_id]}"
-  end
-
 
 end

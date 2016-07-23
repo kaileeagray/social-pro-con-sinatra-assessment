@@ -21,8 +21,9 @@
       <textarea name="description" class="form-control" rows="3" required><%=@item.description%></textarea>
     </div>
     <div class="form-group">
+      <label for="weight">Weight of Argument: </label>
       <select class="form-control" name="weight" >
-        <option selected>Current weight: <%=@item.weight%></option>
+        <option selected><%=@item.weight%></option>
         <%(0..10).to_a.each do |index|%>
           <%if index != @item.weight%>
             <option value"<%=index%>"> <%=index%></option>

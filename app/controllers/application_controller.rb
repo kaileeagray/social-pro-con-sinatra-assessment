@@ -71,7 +71,9 @@ class ApplicationController < Sinatra::Base
       end
     end
 
-
+    def belongs_to_current_user?(list)
+      list.user_id == current_user.id
+    end
   end
 
 end
