@@ -94,13 +94,36 @@ class ListsController < ApplicationController
 
   end
 
-  get '/lists/:id/procons/new' do
-    @list = List.find(params[:id].to_i)
-    if current_user.lists.include?(@list) && logged_in?
-      erb :'/procons/edit_procons'
-    else
-      erb :'/procons/add_procon'
-    end
+  get '/lists/:list_id/:procon/:procon_id/edit' do
+    binding.pry
+    erb :"/procons/edit_procons"
+    # @list = List.find(params[:id].to_i)
+    # if current_user.lists.include?(@list) && logged_in?
+    #   erb :'/procons/edit_procons'
+    # else
+    #   erb :'/procons/add_procon'
+    # end
+  end
+
+  delete '/lists/:list_id/:procon/:procon_id/delete' do
+    binding.pry
+    erb :"/procons/edit_procons"
+    # @list = List.find(params[:id].to_i)
+    # if current_user.lists.include?(@list) && logged_in?
+    #   erb :'/procons/edit_procons'
+    # else
+    #   erb :'/procons/add_procon'
+    # end
+  end
+
+  post '/lists/:list_id/:procon/:procon_id/edit' do
+    # binding.pry
+    # @list = List.find(params[:id].to_i)
+    # if current_user.lists.include?(@list) && logged_in?
+    #   erb :'/procons/edit_procons'
+    # else
+    #   erb :'/procons/add_procon'
+    # end
   end
 
 

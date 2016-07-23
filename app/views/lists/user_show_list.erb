@@ -1,164 +1,163 @@
 <div class="container">
   <div class="page-header">
+    <h1><%=@list.title if @list%> <small><%=@list.description%></small></h1>
+
     <div class="row">
-      <div class="col-md-10">
-        <h1><%=@list.title if @list%> <small><%=@list.description%></small></h1>
+      <div class="col-md-3">
+        <a role="button" class="btn btn-primary btn-block" title="edit title" href="/lists/<%=@list.id%>/edit">Edit Title or Description </a>
       </div>
-      <div class="col-md-2">
-        <a href="/lists/<%=@list.id%>/edit" class="btn btn-primary btn-block" role="button" title="edit">Edit list</a>
-        <br>
+      <div class="col-md-3 col-md-offset-6">
         <form method="post" action="/lists/<%=@list.id%>/delete">
           <input id="hidden" type="hidden" name="_method" value="delete">
-          <button type="submit" value="submit" class="btn btn-danger btn-block">Delete list</button>
+          <button type="submit" value="submit" class="btn btn-danger btn-block">Delete List</button>
         <form>
       </div>
     </div>
-
   </div>
+
 
 
 
   <div class="row">
     <div class="col-md-6">
-      <table class="table table-responsive">
-          <thead>
-            <tr class="bg-success text-success">
-              <th>
-                Your
-              </th>
-              <th> Pros</th>
-              <th>Weight</th>
-              <th>
-                
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <%@list.pros.where(user_id: current_user.id).each do |pro|%>
-              <tr>
-                <td>
-                  <button type="button" class="btn btn-primary btn-sm" title="edit pro"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
-                </td>
-                <td><%=pro.description%></td>
-                <td class="text-center"><%=pro.weight%></td>
-                <td>
-                  <form method="post" action="/lists/<%=@list.id%>/delete">
-                    <input id="hidden" type="hidden" name="_method" value="delete">
-                    <button type="submit" value="submit" class="btn btn-danger btn-sm" title="delete pro"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                  <form>
-                </td>
-              </tr>
-            <%end%>
-          </tbody>
+      <a role="button" class="btn btn-success btn-block" title="new pro" href="/lists/<%=@list.id%>/pro/new">Create New Pro</a>
+      <br>
 
+
+      <%if @list.pros.count > 0%>
+
+        <%if @list.pros.where(user_id: current_user.id).count > 0%>
+        <table class="table table-responsive">
             <thead>
-              <tr class="bg-success text-success">
-                <th>
-                  Edit
-                </th>
-                <th>Pros Suggested From Other Users</th>
+              <tr class="alert alert-success" role="alert">
+                <th>Your Pro Arguments</th>
                 <th>Weight</th>
                 <th>
-                  Delete
                 </th>
               </tr>
             </thead>
             <tbody>
-              <%@list.pros.where.not(user_id: current_user.id).each do |pro|%>
+              <%@list.pros.where(user_id: current_user.id).each do |pro|%>
                 <tr>
-                  <td>
-                    <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
-                  </td>
-                  <td><%=pro.description%>
-                  <h5>
-                    by <a href="/users/<%=User.find(pro.user_id).username%>"><%=User.find(pro.user_id).username%></a>
-                  </h5>
-                  </td>
+                  <td><%=pro.description%></td>
                   <td class="text-center"><%=pro.weight%></td>
                   <td>
-                    <button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <a role="button" class="btn btn-primary btn-sm" title="edit pro" href="/lists/<%=@list.id%>/pro/<%=pro.id%>/edit">Edit</a>
                   </td>
                 </tr>
               <%end%>
             </tbody>
+            <%end%>
 
-            <thead>
-              <tr class="bg-success text-success">
-                <th>
-
-                </th>
-                <th>
-                  <h5 class="text-right">Total:</h5>
-                </th>
-                <th>
-                  <h5 class="text-center"><%=@list.pro_sum%></h5>
-                </th>
-                <th>
-
-                </th>
-              </tr>
-            </thead>
-
-          </table>
-
-
+            <%if @list.pros.where.not(user_id: current_user.id).count > 0%>
+              <thead>
+                <tr class="alert alert-success" role="alert">
+                  <th>Pros From Other Users</th>
+                  <th>Weight</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <%@list.pros.where.not(user_id: current_user.id).each do |pro|%>
+                  <tr>
+                    <td><%=pro.description%>
+                    <h5>
+                      by <a href="/users/<%=User.find(pro.user_id).username%>"><%=User.find(pro.user_id).username%></a>
+                    </h5>
+                    </td>
+                    <td class="text-center"><%=pro.weight%></td>
+                    <td>
+                      <button type="button" class="btn btn-primary btn-sm" title="edit pro">Edit</button>
+                    </td>
+                  </tr>
+                <%end%>
+              </tbody>
+              <%end%>
+              <thead>
+                <tr class="alert alert-success" role="alert">
+                  <th><h5 class="text-right">Total:</h5></th>
+                  <th><h5 class="text-center"><%=@list.pro_sum%></h5></th>
+                  <th></th>
+                </tr>
+              </thead>
+            </table>
+        <%end%>
       </div>
 
 
 
-    <div class="col-md-6">
-      <div class="panel panel-danger">
-        <!-- Default panel contents -->
-        <div class="panel-heading"> <h4 class="text-center">Your Cons</h4></div>
-        <!-- List group -->
-        <ul class="list-group">
-          <%@list.cons.where(user_id: current_user.id).each do |con|%>
-          <li class="list-group-item">
-            <div class="row">
-              <div class="col-md-10"><%=con.description%></div>
-              <div class="col-md-2 text-right"><%=con.weight%></div>
-            </div>
-          </li>
-          <%end%>
-        </ul>
+      <div class="col-md-6">
+        <a role="button" class="btn btn-success btn-block" title="new con" href="/lists/<%=@list.id%>/con/new">Create New Con</a>
+          <%if @list.cons.count > 0%>
+            <table class="table table-responsive">
+                <thead>
+                  <tr class="alert alert-danger" role="alert">
+                    <th>Your Con Arguments</th>
+                    <th>Weight</th>
+                    <th>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%@list.cons.where(user_id: current_user.id).each do |con|%>
+                    <tr>
+                      <td><%=con.description%></td>
+                      <td class="text-center"><%=con.weight%></td>
+                      <td>
+                        <a role="button" class="btn btn-primary btn-sm" title="edit con" href="/lists/<%=@list.id%>/con/<%=con.id%>/edit">Edit</a>
+                      </td>
+                    </tr>
+                  <%end%>
+                </tbody>
 
-        <div class="panel-heading"> <h4 class="text-center">Cons from Other Users</h4></div>
-        <!-- List group -->
-        <ul class="list-group">
-          <%@list.cons.where.not(user_id: current_user.id).each do |con|%>
-          <li class="list-group-item">
-            <div class="row">
-              <div class="col-md-10"><%=con.description%></div>
-              <div class="col-md-2 text-right"><%=con.weight%></div>
-            </div>
-             by <a href="/users/<%=User.find(con.user_id).username%>"><%=User.find(con.user_id).username%></a>
-          </li>
-          <%end%>
-          <li class="list-group-item">
-            <div class="row">
-              <div class="col-md-2 col-md-offset-8">
-                  <h5 class="text-right">Total:</h5>
-              </div>
-              <div class="col-md-2">
-                  <h5 class="text-right"><%=@list.con_sum%></h5>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+              <%if @list.cons.where.not(user_id: current_user.id).count > 0%>
+              <thead>
+                <tr class="alert alert-danger" role="alert">
+                  <th>Cons From Other Users</th>
+                  <th>Weight</th>
+                  <th>
 
-  <div class="row">
-      <%if @list.pro_con_sum > 0%>
-        <div class="alert alert-success" role="alert"> <h3 class="text-center">Pro/Con Rank Total: <%=@list.pro_con_sum%></h3></div>
-      <%elsif @list.pro_con_sum == 0%>
-        <div class="alert alert-info" role="alert"> <h3 class="text-center">Pro/Con Rank Total: <%=@list.pro_con_sum%></h3></div>
-      <%else%>
-        <div class="alert alert-danger" role="alert" > <h3 class="text-center">Pro/Con Rank Total: <%=@list.pro_con_sum%></h3></div>
+                  </th>
+                </tr>
+              </thead>
+                  <tbody>
+                    <%@list.cons.where.not(user_id: current_user.id).each do |con|%>
+                      <tr>
+                        <td><%=con.description%>
+                        <h5>
+                          by <a href="/users/<%=User.find(con.user_id).username%>"><%=User.find(con.user_id).username%></a>
+                        </h5>
+                        </td>
+                        <td class="text-center"><%=con.weight%></td>
+                        <td>
+                          <button type="button" class="btn btn-primary btn-sm" title="edit con">Edit</button>
+                        </td>
+                      </tr>
+                    <%end%>
+                  </tbody>
+                <%end%>
+
+                  <thead>
+                    <tr class="alert alert-danger" role="alert">
+                      <th><h5 class="text-right">Total:</h5></th>
+                      <th><h5 class="text-center"><%=@list.con_sum%></h5></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                </table>
+            <%end%>
+          </div>
+        </div>
+
+      <%if @list.pros.count > 0 || @list.cons.count > 0%>
+        <%if @list.pro_con_sum > 0%>
+          <div class="alert alert-success" role="alert"> <h4 class="text-center">Pro/Con Rank Total: <%=@list.pro_con_sum%></h4></div>
+        <%elsif @list.pro_con_sum == 0%>
+          <div class="alert alert-info" role="alert"> <h4 class="text-center">Pro/Con Rank Total: <%=@list.pro_con_sum%></h4></div>
+        <%else%>
+          <div class="alert alert-danger" role="alert" > <h4 class="text-center">Pro/Con Rank Total: <%=@list.pro_con_sum%></h4></div>
+        <%end%>
       <%end%>
-  </div>
-
 </div>
 
   <br></br>

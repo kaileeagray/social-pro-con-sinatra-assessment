@@ -29,7 +29,8 @@ body {
 .table thead{
     background-color: white;
     text-justify: left;
-
+    font-size: 17px;
+    padding: 15px;
 }
 
 .table tbody {
