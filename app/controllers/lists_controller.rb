@@ -113,7 +113,8 @@ class ListsController < ApplicationController
     # end
   end
 
-  delete '/lists/:list_id/:procon/:procon_id/delete' do
+  get '/lists/:list_id/:procon/:procon_id/delete' do
+    binding.pry
     params[:procon].classify.constantize.find(params[:procon_id]).delete
     redirect "/lists/#{params[:list_id]}"
       # @list = List.find(params[:id].to_i)

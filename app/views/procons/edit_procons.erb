@@ -9,19 +9,15 @@
       <div class="col-md-2">
         <br>
         <div class="form-group">
-          <form method="post" action="/lists/<%=@list.id%>/<%=@procon%>/<%=@item.id%>/delete">
-            <input id="hidden" type="hidden" name="_method" value="delete">
-            <button type="submit" value="submit" class="btn btn-danger btn-block">Delete <%=@procon.capitalize%></button>
-          <form>
+            <a role="button" value="delete" class="btn btn-danger btn-block" href="/lists/<%=@list.id%>/<%=@procon%>/<%=@item.id%>/delete">Delete <%=@procon.capitalize%></a>
         </div>
       </div>
     </div>
   </div>
-
-  <form action="/lists/<%=@list.id%>/<%=@procon%>/edit" method="POST">
+  <form action="/lists/<%=@list.id%>/<%=@procon%>/edit" method="post">
     <div class="form-group">
       <label for="description">Description of Argument: </label>
-      <textarea name="description" class="form-control" rows="3" ><%=@item.description%></textarea>
+      <textarea name="description" class="form-control" rows="3" required><%=@item.description%></textarea>
     </div>
     <div class="form-group">
       <select class="form-control" name="weight" >

@@ -10,18 +10,11 @@
     </div> <br>
     <div class="form-group">
       <select class="form-control" name="weight">
-        <option selected>Select Weight</option>
-        <option value"1">1 (least significant)</option>
-        <option value"2">2</option>
-        <option value"3">3</option>
-        <option value"4">4</option>
-        <option value"5">5</option>
-        <option value"6">6</option>
-        <option value"7">7</option>
-        <option value"8">8</option>
-        <option value"9">9</option>
-        <option value"10">10 (most significant)</option>
-      </select><br>
+        <option selected>Select weight. 0 = no signficance, 10 = highest signifcance.</option>
+        <%(0..10).to_a.each do |index|%>
+          <option value"<%=index%>"> <%=index%></option>
+        <%end%>
+      </select> <br>
     </div>
     <button type="submit" class="btn btn-primary btn-block">Finish </button>
   </form>
