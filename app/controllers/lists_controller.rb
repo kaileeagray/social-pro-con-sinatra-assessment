@@ -133,13 +133,9 @@ class ListsController < ApplicationController
   end
 
   post '/lists/:list_id/:procon/:procon_id/edit' do
-    binding.pry
-    # @list = List.find(params[:id].to_i)
-    # if current_user.lists.include?(@list) && logged_in?
-    #   erb :'/procons/edit_procons'
-    # else
-    #   erb :'/procons/add_procon'
-    # end
+    procon = params[:procon].classify.constantize.find(params[:procon_id])
+    procon.update(description: params[:description], weight: params[:weight])    # @list = List.find(params[:id].to_i)
+    redirect "/lists/#{params[:list_id]}"
   end
 
 

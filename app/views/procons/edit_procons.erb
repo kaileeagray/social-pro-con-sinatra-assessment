@@ -14,7 +14,8 @@
       </div>
     </div>
   </div>
-  <form action="/lists/<%=@list.id%>/<%=@procon%>/edit" method="post">
+
+  <form action="/lists/<%=@list.id%>/<%=@procon%>/<%=@item.id%>/edit" method="post">
     <div class="form-group">
       <label for="description">Description of Argument: </label>
       <textarea name="description" class="form-control" rows="3" required><%=@item.description%></textarea>
