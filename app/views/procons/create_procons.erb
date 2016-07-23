@@ -1,16 +1,15 @@
 <div class="container">
-  <div class="page-heading">
     <h1>Create New <%=@procon.capitalize%></h1>
     <h2><%=@list.title%> <small><%=@list.description%></small></h2>
-  </div>
+    <br>
 
   <form action="/lists/<%=@list.id%>/<%=@procon%>/new" method="POST">
     <div class="form-group">
       <label for="description">Description of Argument: </label>
       <textarea name="description" class="form-control" placeholder="description required" rows="3" required autofocus></textarea>
-    </div>
+    </div> <br>
     <div class="form-group">
-      <select class="form-control" name="weight" required autofocus="">
+      <select class="form-control" name="weight">
         <option selected>Select Weight</option>
         <option value"1">1 (least significant)</option>
         <option value"2">2</option>
@@ -22,9 +21,8 @@
         <option value"8">8</option>
         <option value"9">9</option>
         <option value"10">10 (most significant)</option>
-      </select>
+      </select><br>
     </div>
     <button type="submit" class="btn btn-primary btn-block">Finish </button>
   </form>
-  <br></br>
 </div>
