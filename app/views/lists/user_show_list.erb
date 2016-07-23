@@ -25,7 +25,6 @@
 
 
       <%if @list.pros.count > 0%>
-
         <%if @list.pros.where(user_id: current_user.id).count > 0%>
         <table class="table table-responsive">
             <thead>
@@ -91,26 +90,27 @@
         <br>
           <%if @list.cons.count > 0%>
             <table class="table table-responsive">
-                <thead>
-                  <tr class="alert alert-danger" role="alert">
-                    <th>Your Con Arguments</th>
-                    <th>Weight</th>
-                    <th>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <%@list.cons.where(user_id: current_user.id).each do |con|%>
-                    <tr>
-                      <td><%=con.description%></td>
-                      <td class="text-center"><%=con.weight%></td>
-                      <td>
-                        <a role="button" class="btn btn-primary btn-sm" title="edit con" href="/lists/<%=@list.id%>/con/<%=con.id%>/edit">Edit</a>
-                      </td>
+              <%if @list.cons.where(user_id: current_user.id).count > 0%>
+                  <thead>
+                    <tr class="alert alert-danger" role="alert">
+                      <th>Your Con Arguments</th>
+                      <th>Weight</th>
+                      <th>
+                      </th>
                     </tr>
-                  <%end%>
-                </tbody>
-
+                  </thead>
+                  <tbody>
+                    <%@list.cons.where(user_id: current_user.id).each do |con|%>
+                      <tr>
+                        <td><%=con.description%></td>
+                        <td class="text-center"><%=con.weight%></td>
+                        <td>
+                          <a role="button" class="btn btn-primary btn-sm" title="edit con" href="/lists/<%=@list.id%>/con/<%=con.id%>/edit">Edit</a>
+                        </td>
+                      </tr>
+                    <%end%>
+                  </tbody>
+                <%end%>
               <%if @list.cons.where.not(user_id: current_user.id).count > 0%>
               <thead>
                 <tr class="alert alert-danger" role="alert">
