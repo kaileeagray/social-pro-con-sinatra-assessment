@@ -126,7 +126,8 @@ class ListsController < ApplicationController
 
   post '/lists/:list_id/:procon/new' do
     @list = List.find(params[:list_id])
-    params[:procon].classify.constantize.create(user_id: @list.user_id, list_id: @list.id, weight: params[:weight], description: params[:description])
+    binding.pry
+    params[:procon].classify.constantize.create(user_id: current_user.id, list_id: @list.id, weight: params[:weight], description: params[:description])
 
     redirect "/lists/#{@list.id}"
   end
