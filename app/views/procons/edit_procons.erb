@@ -3,7 +3,7 @@
     <div class="row">
       <div class="page-header">
         <div class="col-md-10">
-          <h1>Edit <%=@list.title%></h1>
+          <h1>Edit <%=@procon%> from <%=@list.title%></h1>
           <h2> <small><%=@list.description%></small></h2>
         </div>
       <div class="col-md-2">
@@ -11,8 +11,9 @@
         <div class="form-group">
           <form method="post" action="/lists/<%=@list.id%>/<%=@procon%>/<%=@item.id%>/delete">
             <input id="hidden" type="hidden" name="_method" value="delete">
-            <button type="submit" value="submit" class="btn btn-danger">Delete <%=@procon.capitalize%></button>
-          <form>                    </div>
+            <button type="submit" value="submit" class="btn btn-danger btn-block">Delete <%=@procon.capitalize%></button>
+          <form>
+        </div>
       </div>
     </div>
   </div>
@@ -33,8 +34,14 @@
       </select>
     </div> <br>
     <div class="form-group">
-      <a role="button" href="/lists/<%=@list.id%>" class="btn btn-warning" title="cancel">Cancel</a>
-      <button type="submit" class="btn btn-primary">Update</button>
+      <div class="row">
+        <div class="col-md-6">
+          <a role="button" href="/lists/<%=@list.id%>" class="btn btn-warning btn-block" title="cancel">Cancel</a>
+        </div>
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-primary btn-block">Update</button>
+        </div>
+      </div>
     </div>
   </form>
 
