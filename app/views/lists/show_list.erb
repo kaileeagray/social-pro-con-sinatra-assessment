@@ -1,15 +1,9 @@
 <div class="container">
 
   <div class="page-header">
-    <div class="row">
-      <div class="col-md-10">
-        <h1><%=@list.title if @list%> <small><%=@list.description%></small></h1>
-        <h4>by <a href="/users/<%=User.find(@list.user_id).username%>"><%=User.find(@list.user_id).username%></a></h4>
-      </div>
-      <div class="col-md-2 center">
-        <a href="/lists/<%=@list.id%>/procons/new" class="btn btn-primary btn-block" role="button">Add Pros and Cons</a>
-      </div>
-    </div>
+    <h1><%=@list.title if @list%> <small><%=@list.description%></small></h1>
+    <h4>by <a href="/users/<%=User.find(@list.user_id).username%>"><%=User.find(@list.user_id).username%></a></h4>
+    <a href="/lists/<%=@list.id%>/procons/new" class="btn btn-primary btn-block" role="button">Add Pros and Cons</a>
   </div>
 
     <div class="row">

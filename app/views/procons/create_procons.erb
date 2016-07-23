@@ -1,10 +1,23 @@
 <div class="container">
-  <div class="container">
     <div class="page-heading">
       <h1><%=@list.title%> <small><%=@list.description%></small></h1>
     </div>
-  </div>
-  div
+
+    <h1>Add A Pro or Con</h1>
+    <br></br>
+    <form action="/lists/new" method="POST">
+      <div class="form-group">
+        <label for="title">Title of List: </label>
+        <input name="title" type="text" class="form-control" placeholder="title required" required autofocus>
+      </div><br>
+      <div class="form-group">
+        <label for="description">Description: </label>
+        <textarea name="description" class="form-control" placeholder="description required" rows="3" required autofocus></textarea>
+      </div>
+      <a href="#"></a>
+      <button type="submit" class="btn btn-primary btn-block">Finish </button>
+    </form>
+
 
   <select class="c-select">
     <option selected>Select Weight</option>
@@ -20,6 +33,7 @@
     <option value"10">10 (most significant)</option>
   </select>
 
+</div>
 
 <!--
 
@@ -72,7 +86,3 @@
   	<a id="add_row" class="btn btn-default pull-right">Add Pro</a>
   </div>
  -->
-
-
-
-</div>

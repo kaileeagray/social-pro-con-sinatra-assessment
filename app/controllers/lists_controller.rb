@@ -34,7 +34,7 @@ class ListsController < ApplicationController
       @list.description = params[:description] if params[:description] != ""
       @list.user_id = current_user.id
       @list.save
-      erb :'/procons/create_procons'
+      redirect "/lists/#{@list.id}"
     else
       redirect '/lists/new'
     end
@@ -76,7 +76,7 @@ class ListsController < ApplicationController
       redirect "/login" # redirect if not logged in
     else
       current_user.lists.find(params[:id]).update(title: params[:title], description: params[:description])
-      redirect "/lists/#{@list.id}/procons/new"
+      redirect "/lists/#{@list.id}"
     end
   end
 
@@ -94,8 +94,17 @@ class ListsController < ApplicationController
 
   end
 
+  get '/lists/:list_id/:procon/new' do
+    binding.pry
+    @list = List.find(params[:list_id])
+
+    erb :"/procons/create_procons"
+  end
+
   get '/lists/:list_id/:procon/:procon_id/edit' do
     binding.pry
+    @list = List.find(params[:list_id])
+
     erb :"/procons/edit_procons"
     # @list = List.find(params[:id].to_i)
     # if current_user.lists.include?(@list) && logged_in?
