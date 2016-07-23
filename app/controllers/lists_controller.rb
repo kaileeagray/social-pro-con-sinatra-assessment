@@ -95,14 +95,12 @@ class ListsController < ApplicationController
   end
 
   get '/lists/:list_id/:procon/new' do
-    binding.pry
     @list = List.find(params[:list_id])
-
+    @procon = params[:procon]
     erb :"/procons/create_procons"
   end
 
   get '/lists/:list_id/:procon/:procon_id/edit' do
-    binding.pry
     @list = List.find(params[:list_id])
 
     erb :"/procons/edit_procons"
@@ -115,7 +113,6 @@ class ListsController < ApplicationController
   end
 
   delete '/lists/:list_id/:procon/:procon_id/delete' do
-    binding.pry
     erb :"/procons/edit_procons"
     # @list = List.find(params[:id].to_i)
     # if current_user.lists.include?(@list) && logged_in?
@@ -123,6 +120,13 @@ class ListsController < ApplicationController
     # else
     #   erb :'/procons/add_procon'
     # end
+  end
+
+  post '/lists/:list_id/:procon/new' do
+    @list = List.find(params[:list_id])
+    params[:procon].classify.constantize.create(user_id: @list.user_id, list_id: @list.id, weight: params[:weight], description: params[:description])
+
+    redirect "/lists/#{@list.id}"
   end
 
   post '/lists/:list_id/:procon/:procon_id/edit' do

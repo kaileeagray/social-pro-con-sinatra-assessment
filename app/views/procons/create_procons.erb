@@ -1,88 +1,30 @@
 <div class="container">
-    <div class="page-heading">
-      <h1><%=@list.title%> <small><%=@list.description%></small></h1>
-    </div>
-
-    <h1>Add A Pro or Con</h1>
-    <br></br>
-    <form action="/lists/new" method="POST">
-      <div class="form-group">
-        <label for="title">Title of List: </label>
-        <input name="title" type="text" class="form-control" placeholder="title required" required autofocus>
-      </div><br>
-      <div class="form-group">
-        <label for="description">Description: </label>
-        <textarea name="description" class="form-control" placeholder="description required" rows="3" required autofocus></textarea>
-      </div>
-      <a href="#"></a>
-      <button type="submit" class="btn btn-primary btn-block">Finish </button>
-    </form>
-
-
-  <select class="c-select">
-    <option selected>Select Weight</option>
-    <option value"1">1 (least significant)</option>
-    <option value"2">2</option>
-    <option value"3">3</option>
-    <option value"4">4</option>
-    <option value"5">5</option>
-    <option value"6">6</option>
-    <option value"7">7</option>
-    <option value"8">8</option>
-    <option value"9">9</option>
-    <option value"10">10 (most significant)</option>
-  </select>
-
-</div>
-
-<!--
-
-  <div class="container">
-      <div class="row clearfix">
-      	<div class="col-md-12 table-responsive">
-  			<table class="table table-bordered table-hover table-sortable" id="tab_logic">
-  				<thead>
-  					<tr >
-  						<th class="text-center">
-  							Description
-  						</th>
-
-      					<th class="text-center">
-  							Select Weight
-  						</th>
-          		<th class="text-center">
-                  Remove
-  						</th>
-  					</tr>
-  				</thead>
-  				<tbody>
-      				<tr id='addr0' data-id="0" class="hidden">
-  						<td data-name="desc">
-  						    <input type="text" name='description'  placeholder='Details of argument' class="form-control"/>
-  						</td>
-      					<td data-name="sel">
-  						    <select name="sel0">
-          				        <option value"">Select Weight</option>
-      					        <option value"1">1 (least significant)</option>
-          				        <option value"2">2</option>
-          				        <option value"3">3</option>
-                          <option value"4">4</option>
-                          <option value"5">5</option>
-                          <option value"6">6</option>
-                          <option value"7">7</option>
-                          <option value"8">8</option>
-                          <option value"9">9</option>
-                          <option value"10">10 (most significant)</option>
-  						    </select>
-  						</td>
-                          <td data-name="del">
-                              <button nam"del0" class='btn btn-danger glyphicon glyphicon-remove row-remove'></button>
-                          </td>
-  					</tr>
-  				</tbody>
-  			</table>
-  		</div>
-  	</div>
-  	<a id="add_row" class="btn btn-default pull-right">Add Pro</a>
+  <div class="page-heading">
+    <h1>Create New <%=@procon.capitalize%></h1>
+    <h2><%=@list.title%> <small><%=@list.description%></small></h2>
   </div>
- -->
+
+  <form action="/lists/<%=@list.id%>/<%=@procon%>/new" method="POST">
+    <div class="form-group">
+      <label for="description">Description of Argument: </label>
+      <textarea name="description" class="form-control" placeholder="description required" rows="3" required autofocus></textarea>
+    </div>
+    <div class="form-group">
+      <select class="form-control" name="weight" required autofocus="">
+        <option selected>Select Weight</option>
+        <option value"1">1 (least significant)</option>
+        <option value"2">2</option>
+        <option value"3">3</option>
+        <option value"4">4</option>
+        <option value"5">5</option>
+        <option value"6">6</option>
+        <option value"7">7</option>
+        <option value"8">8</option>
+        <option value"9">9</option>
+        <option value"10">10 (most significant)</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Finish </button>
+  </form>
+  <br></br>
+</div>
