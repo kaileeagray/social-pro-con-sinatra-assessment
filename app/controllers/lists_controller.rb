@@ -102,7 +102,8 @@ class ListsController < ApplicationController
 
   get '/lists/:list_id/:procon/:procon_id/edit' do
     @list = List.find(params[:list_id])
-
+    @procon = params[:procon]
+    @item = params[:procon].classify.constantize.find(params[:procon_id])
     erb :"/procons/edit_procons"
     # @list = List.find(params[:id].to_i)
     # if current_user.lists.include?(@list) && logged_in?
@@ -113,8 +114,9 @@ class ListsController < ApplicationController
   end
 
   delete '/lists/:list_id/:procon/:procon_id/delete' do
-    erb :"/procons/edit_procons"
-    # @list = List.find(params[:id].to_i)
+    params[:procon].classify.constantize.find(params[:procon_id]).delete
+    redirect "/lists/#{params[:list_id]}"
+      # @list = List.find(params[:id].to_i)
     # if current_user.lists.include?(@list) && logged_in?
     #   erb :'/procons/edit_procons'
     # else
