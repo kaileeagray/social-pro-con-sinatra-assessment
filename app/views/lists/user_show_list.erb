@@ -67,7 +67,7 @@
                     </td>
                     <td class="text-center"><%=pro.weight%></td>
                     <td>
-                      <button type="button" class="btn btn-primary btn-sm" title="edit pro">Edit</button>
+                      <a role="button" class="btn btn-primary btn-sm" title="edit pro" href="/lists/<%=@list.id%>/pro/<%=pro.id%>/edit">Edit</a>
                     </td>
                   </tr>
                 <%end%>
@@ -131,7 +131,7 @@
                         </td>
                         <td class="text-center"><%=con.weight%></td>
                         <td>
-                          <button type="button" class="btn btn-primary btn-sm" title="edit con">Edit</button>
+                          <a role="button" class="btn btn-primary btn-sm" title="edit con" href="/lists/<%=@list.id%>/con/<%=con.id%>/edit">Edit</a>
                         </td>
                       </tr>
                     <%end%>
