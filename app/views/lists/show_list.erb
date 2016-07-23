@@ -3,11 +3,12 @@
   <div class="page-header">
     <h1><%=@list.title if @list%> <small><%=@list.description%></small></h1>
     <h4>by <a href="/users/<%=User.find(@list.user_id).username%>"><%=User.find(@list.user_id).username%></a></h4>
-    <a href="/lists/<%=@list.id%>/procons/new" class="btn btn-primary btn-block" role="button">Add Pros and Cons</a>
   </div>
 
     <div class="row">
       <div class="col-md-6">
+        <a role="button" class="btn btn-success btn-block" title="new pro" href="/lists/<%=@list.id%>/pro/new">Suggest New Pro</a>
+        <br>
         <div class="panel panel-success">
           <!-- Default panel contents -->
           <div class="panel-heading"> <h4 class="text-center">User's Pros</h4></div>
@@ -50,6 +51,8 @@
       </div>
 
       <div class="col-md-6">
+        <a role="button" class="btn btn-success btn-block" title="new con" href="/lists/<%=@list.id%>/con/new">Create New Con</a>
+        <br>
         <div class="panel panel-danger">
           <!-- Default panel contents -->
           <div class="panel-heading"> <h4 class="text-center">User's Cons</h4></div>
