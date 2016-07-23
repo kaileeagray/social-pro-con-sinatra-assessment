@@ -132,7 +132,7 @@ class ListsController < ApplicationController
   end
 
   post '/lists/:list_id/:procon/:procon_id/edit' do
-    # binding.pry
+    binding.pry
     # @list = List.find(params[:id].to_i)
     # if current_user.lists.include?(@list) && logged_in?
     #   erb :'/procons/edit_procons'
