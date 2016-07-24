@@ -25,12 +25,9 @@ class ListsController < ApplicationController
   end
 
   post '/lists/new' do
-    if params[:title] == ""
-      @error = "Title of list cannot be left blank."
-      erb :'/lists/create_list'
-    end
     if logged_in? && params[:title] != ""
       @list = List.new(title: params[:title])
+      @list.source = params[:source] if params[:source]
       @list.description = params[:description] if params[:description] != ""
       @list.user_id = current_user.id
       @list.save
@@ -69,7 +66,7 @@ class ListsController < ApplicationController
     if !logged_in?
       redirect "/login" # redirect if not logged in
     else
-      current_user.lists.find(params[:id]).update(title: params[:title], description: params[:description])
+      current_user.lists.find(params[:id]).update(title: params[:title], description: params[:description], source: params[:source])
       redirect "/lists/#{@list.id}"
     end
   end

@@ -12,7 +12,10 @@
       <textarea name="description" class="form-control" rows="3" required autofocus><%=@list.description%></textarea>
     </div>
     <div class="form-group">
-      <a role="button" href="/lists/<%=@list.id%>" class="btn btn-danger" title="cancel">Cancel</a>
+      <label for="source">Link to source (optional): </label>
+      <textarea name="title" type="link" class="form-control" placeholder="link not required" rows="1"><%=@list.source if @list.source%></textarea>
+    </div>
+    <div class="form-group">
       <button type="submit" class="btn btn-primary ">Update List</button>
     </div>
   </form>
