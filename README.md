@@ -6,7 +6,7 @@ Sinatra CRUD app for creating and managing pro con lists. Users must create an a
 
 ### Installation
 
-1. Fork and clone repo to your local machine
+1. Fork and clone repo to your local machine.
 2. Use `bundle install` to install dependencies.
 
 ### Usage

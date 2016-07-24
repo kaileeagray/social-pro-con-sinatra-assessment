@@ -11,7 +11,8 @@ class UsersController < ApplicationController
                   password: params[:password]}
     if signup_errors?(params_hash) || params[:password] != params[:confirm_password]
       @errors = []
-      @errors < "All fields must be completed." if any_nil?(params_hash)
+      @errors << "All fields must be completed." if any_nil?(params_hash)
+      @errors << "Username cannot contain spaces." if username_spaces?(params)
       @errors << "The username #{params[:username]} is associated to an existing account." if username_exists?(params_hash)
       @errors << "The email #{params[:email]} is associated to an existing account." if email_exists?(params_hash)
       @errors << "Passwords must match." if params["password"] != params["confirm_password"]
@@ -49,8 +50,5 @@ class UsersController < ApplicationController
     end
     redirect '/'
   end
-
-
-
 
 end

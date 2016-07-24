@@ -8,7 +8,6 @@ class ProConController < ApplicationController
 
   get '/lists/:list_id/:procon/:procon_id/edit' do
     @list = List.find(params[:list_id])
-
     if !belongs_to_current_user?(@list) || !logged_in?
       redirect "/lists/#{@list.id}"
     end
