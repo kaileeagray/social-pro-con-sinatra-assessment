@@ -17,23 +17,6 @@
       <%if @list.pros.count > 0%>
         <table class="table table-responsive">
 
-          <%if @list.pros.where(user_id: current_user.id).count > 0%>
-            <thead>
-              <tr class="alert alert-success" role="alert">
-                <th>Your Suggested Pro Arguments</th>
-                <th>Weight</th>
-              </tr>
-            </thead>
-            <tbody>
-              <%@list.pros.where(user_id: current_user.id).each do |pro|%>
-                <tr>
-                  <td><%=pro.description%></td>
-                  <td class="text-center"><%=pro.weight%></td>
-                </tr>
-              <%end%>
-            </tbody>
-          <%end%>
-
         <%if @list.pros.where(user_id: @list.user_id).count > 0%>
             <thead>
               <tr class="alert alert-success" role="alert">
@@ -50,8 +33,7 @@
               <%end%>
             </tbody>
             <%end%>
-
-            <%if @list.pros.where.not(user_id: @list.user_id, user_id: current_user.id).count > 0%>
+            <%if @list.pros.where.not(user_id: [@list.user_id, current_user.id]).count > 0%>
               <thead>
                 <tr class="alert alert-success" role="alert">
                   <th>Pros From Other Users</th>
@@ -71,6 +53,22 @@
                 <%end%>
               </tbody>
               <%end%>
+              <%if @list.pros.where(user_id: current_user.id).count > 0%>
+                <thead>
+                  <tr class="alert alert-success" role="alert">
+                    <th>Your Suggested Pro Arguments</th>
+                    <th>Weight</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%@list.pros.where(user_id: current_user.id).each do |pro|%>
+                    <tr>
+                      <td><%=pro.description%></td>
+                      <td class="text-center"><%=pro.weight%></td>
+                    </tr>
+                  <%end%>
+                </tbody>
+              <%end%>
               <thead>
                 <tr class="alert alert-success" role="alert">
                   <th><h5 class="text-right">Total:</h5></th>
@@ -87,23 +85,6 @@
 
         <%if @list.cons.count > 0%>
           <table class="table table-responsive">
-            <%if @list.cons.where(user_id: current_user.id).count > 0%>
-              <thead>
-                <tr class="alert alert-danger" role="alert">
-                  <th>Your Suggested Con Arguments</th>
-                  <th>Weight</th>
-                </tr>
-              </thead>
-              <tbody>
-                <%@list.cons.where(user_id: current_user.id).each do |con|%>
-                  <tr>
-                    <td><%=con.description%></td>
-                    <td class="text-center"><%=con.weight%></td>
-                  </tr>
-                <%end%>
-              </tbody>
-            <%end%>
-
           <%if @list.cons.where(user_id: @list.user_id).count > 0%>
               <thead>
                 <tr class="alert alert-danger" role="alert">
@@ -121,7 +102,24 @@
               </tbody>
               <%end%>
 
-              <%if @list.cons.where.not(user_id: @list.user_id, user_id: current_user.id).count > 0%>
+              <%if @list.cons.where(user_id: current_user.id).count > 0%>
+                <thead>
+                  <tr class="alert alert-danger" role="alert">
+                    <th>Your Suggested Con Arguments</th>
+                    <th>Weight</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%@list.cons.where(user_id: current_user.id).each do |con|%>
+                    <tr>
+                      <td><%=con.description%></td>
+                      <td class="text-center"><%=con.weight%></td>
+                    </tr>
+                  <%end%>
+                </tbody>
+              <%end%>
+
+              <%if @list.cons.where.not(user_id: [@list.user_id, current_user.id]).count > 0%>
                 <thead>
                   <tr class="alert alert-danger" role="alert">
                     <th>Cons From Other Users</th>
