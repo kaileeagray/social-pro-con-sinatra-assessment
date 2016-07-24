@@ -1,9 +1,9 @@
  <div class="container">
   <div class="page-header">
     <h2><%=@list.title if @list%></h2> <p><%=@list.description%></p>
-    <%if @list.source%>
+    <%if @list.source != "f"%>
       <p>
-        Source:  <a href="<%=@list.source%>"><%=@list.source%></a>
+        Source:  <a href="<%=@list.source%>" target="_blank"><%=@list.source%></a>
       </p>
     <%end%>
     <h3>by <a href="/users/<%=User.find(@list.user_id).username%>"><%=User.find(@list.user_id).username%></a></h3>

@@ -1,9 +1,11 @@
 <div class="container">
+
   <div class="page-header">
-    <h2><%=@list.title if @list%></h2> <p><%=@list.description%></p>
-    <%if @list.source%>
+    <h2><%=@list.title%></h2>
+    <p><%=@list.description%></p>
+    <%if @list.source != "f" && @list.source !=""%>
       <p>
-        Source:  <a href="<%=@list.source%>"><%=@list.source%></a>
+        Source: <a href="<%=@list.source%>" target="_blank"><%=@list.source%></a>
       </p>
     <%end%>
     <div class="row">
