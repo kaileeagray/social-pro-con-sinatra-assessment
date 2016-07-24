@@ -1,7 +1,11 @@
 <div class="container">
   <div class="page-header">
-    <h1><%=@list.title if @list%> <small><%=@list.description%></small></h1>
-
+    <h2><%=@list.title if @list%></h2> <p><%=@list.description%></p>
+    <%if @list.source%>
+      <p>
+        Source:  <a href="<%=@list.source%>"><%=@list.source%></a>
+      </p>
+    <%end%>
     <div class="row">
       <div class="col-md-3">
         <a role="button" class="btn btn-primary btn-block" title="edit title" href="/lists/<%=@list.id%>/edit">Edit Title or Description </a>

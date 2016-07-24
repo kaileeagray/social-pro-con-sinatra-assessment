@@ -22,7 +22,7 @@ end
 
 User.all.each do |user|
   5.times do
-    list = List.create(title: Faker::Hipster.word, description: Faker::Hipster.sentence, user_id: user.id)
+    list = List.create(title: Faker::Hipster.word, description: Faker::Hipster.sentence, user_id: user.id, created_at: Faker::Time.between(10.days.ago, Date.today, :midnight))
   end
 end
 
@@ -70,7 +70,6 @@ User.create(
 
 require 'nokogiri'
 require 'open-uri'
-require 'pry'
 
 
 class Scraper
@@ -99,7 +98,8 @@ class Scraper
       list = List.new
       list.user_id = User.find_by(username: "the_onion").id
       list.title =  @doc.css(".content-header").text.strip
-      list.description = "Source: #{@url}\n\n" + @doc.css(".content-text b").first.text
+      list.description = @doc.css(".content-text b").first.text
+      list.source = @url
       list.save
       @doc.css(".content-text ul").first.css("li").collect do |pro|
         pro = Pro.create(list_id: list.id, user_id: User.find_by(username: "the_onion").id, description: pro.text, weight: Faker::Number.between(0, 10))

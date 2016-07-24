@@ -1,7 +1,12 @@
  <div class="container">
   <div class="page-header">
-    <h1><%=@list.title if @list%> <small><%=@list.description%></small></h1>
-    <h2>by <a href="/users/<%=User.find(@list.user_id).username%>"><%=User.find(@list.user_id).username%></a></h2>
+    <h2><%=@list.title if @list%></h2> <p><%=@list.description%></p>
+    <%if @list.source%>
+      <p>
+        Source:  <a href="<%=@list.source%>"><%=@list.source%></a>
+      </p>
+    <%end%>
+    <h3>by <a href="/users/<%=User.find(@list.user_id).username%>"><%=User.find(@list.user_id).username%></a></h3>
   </div>
 
   <div class="row">
