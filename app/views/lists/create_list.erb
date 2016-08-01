@@ -4,15 +4,15 @@
   <form action="/lists" method="POST">
     <div class="form-group">
       <label for="title">Title of List: </label>
-      <input name="title" type="text" class="form-control" placeholder="title required" required>
+      <input name="list[title]" type="text" class="form-control" placeholder="title required" required>
     </div><br>
     <div class="form-group">
       <label for="description">Description: </label>
-      <textarea name="description" class="form-control" placeholder="description required" rows="3"></textarea>
+      <textarea name="list[description]" class="form-control" placeholder="description required" rows="3"></textarea>
     </div>
     <div class="form-group">
       <label for="source">Link to source (optional): </label>
-      <input name="source" type="link" class="form-control" placeholder="link not required">
+      <input name="list[source]" type="link" class="form-control" placeholder="link not required">
     </div>
     <button type="submit" class="btn btn-primary">Create List</button>
   </form>

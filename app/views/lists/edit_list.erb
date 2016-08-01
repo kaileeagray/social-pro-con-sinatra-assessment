@@ -6,15 +6,15 @@
 
     <div class="form-group">
       <label for="title">Title of List: </label>
-      <textarea name="title" class="form-control" rows="1" required autofocus><%=@list.title%></textarea>
+      <textarea name="list[title]" class="form-control" rows="1" required autofocus><%=@list.title%></textarea>
     </div><br>
     <div class="form-group">
       <label for="description">Description: </label>
-      <textarea name="description" class="form-control" rows="3" required autofocus><%=@list.description%></textarea>
+      <textarea name="list[description]" class="form-control" rows="3" required autofocus><%=@list.description%></textarea>
     </div>
     <div class="form-group">
       <label for="source">Link to source (optional): </label>
-      <textarea name="source" type="link" class="form-control" placeholder="link not required" rows="1"><%=@list.source if @list.source != "f"%></textarea>
+      <textarea name="list[source]" type="link" class="form-control" placeholder="link not required" rows="1"><%=@list.source if @list.source != "f"%></textarea>
     </div>
     <div class="form-group">
       <button type="submit" class="btn btn-primary ">Update List</button>

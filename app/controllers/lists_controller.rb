@@ -20,15 +20,13 @@ class ListsController < ApplicationController
     if logged_in?
         erb :'lists/create_list'
     else
-      redirect '/login'
+      redirect '/'
     end
   end
 
   post '/lists' do
-    if logged_in? && params[:title] != ""
-      @list = List.new(title: params[:title])
-      @list.source = params[:source] if params[:source]
-      @list.description = params[:description] if params[:description] != ""
+    if logged_in? && params[:list][:title] != "" && params[:list][:description] != ""
+      @list = List.create(params["list"])
       @list.user_id = current_user.id
       @list.save
       redirect "/lists/#{@list.id}"
@@ -60,10 +58,10 @@ class ListsController < ApplicationController
 
   patch '/lists/:id' do
     @list = find_list_id
-    if !logged_in?
+    if !logged_in? || !current_user.lists.find(params[:id])
       redirect "/login" # redirect if not logged in
     else
-      current_user.lists.find(params[:id]).update(title: params[:title], description: params[:description], source: params[:source])
+      @list.update(params[:list])
       redirect "/lists/#{@list.id}"
     end
   end
