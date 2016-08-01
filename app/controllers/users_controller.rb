@@ -33,14 +33,10 @@ class UsersController < ApplicationController
   end
 
   get "/users/:name" do
-    @user = User.find_by(username: params[:name])
+    @user = find_by_username
     erb :'/users/show_users_lists'
   end
 
-  get "/users/:name/edit" do
-    @user = User.find_by(username: params[:name])
-    erb :'/users/edit_user'
-  end
 
   delete '/users/:name' do #delete action
     user = find_by_username

@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
 
   get '/login' do
     if logged_in?
-      flash[:message] = "You are logged in."
       redirect '/lists'
     end
     erb :'users/login'

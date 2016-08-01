@@ -5,6 +5,8 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 use Rack::MethodOverride
+# It will help you interpret post methods with parameter "_method" with value "delete" as put
+
 use UsersController
 use ProConController
 use ListsController

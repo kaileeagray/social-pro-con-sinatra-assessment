@@ -1,7 +1,9 @@
 <div class="container">
   <h1>Edit Pro/Con List</h1>
   <br></br>
-  <form action="/lists/<%=@list.id%>/edit" method="POST">
+  <form action="/lists/<%=@list.id%>" method="POST">
+    <input type="hidden" value="patch" name="_method">
+
     <div class="form-group">
       <label for="title">Title of List: </label>
       <textarea name="title" class="form-control" rows="1" required autofocus><%=@list.title%></textarea>

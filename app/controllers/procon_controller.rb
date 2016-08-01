@@ -34,7 +34,7 @@ class ProConController < ApplicationController
     redirect "/lists/#{@list.id}"
   end
 
-  post '/lists/:list_id/:procon/:procon_id/edit' do
+  patch '/lists/:list_id/:procon/:procon_id' do
     procon = params[:procon].classify.constantize.find(params[:procon_id])
     procon.update(description: params[:description], weight: params[:weight])
     redirect "/lists/#{params[:list_id]}"

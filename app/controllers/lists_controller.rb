@@ -38,7 +38,7 @@ class ListsController < ApplicationController
   end
 
   get '/lists/:id/edit' do
-    @list = List.find(params[:id])
+    @list = find_list_id
     if !logged_in?
       redirect "/login"
     elsif current_user.lists.include?(@list) && logged_in?
@@ -49,7 +49,7 @@ class ListsController < ApplicationController
   end
 
   get '/lists/:id' do
-    @list = List.find(params[:id].to_i)
+    @list = find_list_id
     if current_user.lists.include?(@list) && logged_in?
       erb :'/lists/user_show_list'
     else
@@ -58,9 +58,8 @@ class ListsController < ApplicationController
   end
 
 
-
-  post '/lists/:id/edit' do
-    @list = List.find(params[:id])
+  patch '/lists/:id' do
+    @list = find_list_id
     if !logged_in?
       redirect "/login" # redirect if not logged in
     else
@@ -71,7 +70,7 @@ class ListsController < ApplicationController
 
   delete '/lists/:id' do #delete action
     @errors = []
-    list = List.find(params[:id])
+    list = find_list_id
     if logged_in? && list == current_user.lists.find(params[:id])
       list.delete
       redirect "/users/#{current_user.username}"
@@ -81,5 +80,12 @@ class ListsController < ApplicationController
       erb :"/lists/#{params[:id]}"
     end
   end
+
+  private
+
+     def find_list_id
+       List.find(params[:id])
+     end
+
 
 end
