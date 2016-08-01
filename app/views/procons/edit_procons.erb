@@ -9,7 +9,10 @@
       <div class="col-md-2">
         <br>
         <div class="form-group">
-            <a role="button" value="delete" class="btn btn-danger btn-block" href="/lists/<%=@list.id%>/<%=@procon%>/<%=@item.id%>/delete">Delete <%=@procon.capitalize%></a>
+          <form action="/lists/<%=@list.id%>/<%=@procon%>/<%=@item.id%>" method="post">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit" class="btn btn-danger btn-block">Delete <%=@procon%></button>
+          </form>
         </div>
       </div>
     </div>

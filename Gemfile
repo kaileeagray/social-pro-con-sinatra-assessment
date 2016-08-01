@@ -7,16 +7,12 @@ gem 'rake'
 gem 'require_all'
 gem 'thin'
 gem 'shotgun'
+gem 'pry'
 gem 'bcrypt'
+gem "tux"
+gem 'faker'
+gem 'sinatra-sequel'
 
-
-group :development do
- gem 'sqlite3'
- gem "tux"
- gem 'pry'
- gem 'pry-byebug'
- gem 'shotgun'
-end
 
 
 group :test do
@@ -24,4 +20,8 @@ group :test do
   gem 'capybara'
   gem 'rack-test'
   gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
+end
+
+group :development, :test do # <<<< :development, not devlopment
+  gem 'sqlite3'
 end

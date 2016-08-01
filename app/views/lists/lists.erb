@@ -2,13 +2,15 @@
 
   <div class="page-heading">
     <h1>Check out all SocialProCons, <%=@current_user.username if @current_user%>!</h1>
+    <a role="button" class="btn btn-success btn-block" title="new list" href="/lists/new">Add New List</a>
   </div>
 
-<div class="row">
-  <div class="col-md-6">
-    <div class="page-heading">
-      <p class="lead">View other users' most recent Pro/Con lists:</p>
-    </div>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="page-heading">
+        <p class="lead">View other users' most recent Pro/Con lists:</p>
+      </div>
       <%List.order(:created_at).reverse.each do |list|%>
         <%if list.user_id != @current_user.id && list.user_id%>
           <h4><a href="/lists/<%=list.id%>"><%=list.title%></a> by <a href="/users/<%=User.find(list.user_id).username%>"><%=User.find(list.user_id).username%></a></h4>
@@ -28,5 +30,6 @@
       <%end%>
     </div>
   </div>
+  
   <br></br>
 </div>

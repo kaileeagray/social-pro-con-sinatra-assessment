@@ -42,13 +42,19 @@ class UsersController < ApplicationController
     erb :'/users/edit_user'
   end
 
-  delete '/users/:name/delete' do #delete action
-    user = User.find_by(username: params[:name])
+  delete '/users/:name' do #delete action
+    user = find_by_username
     if logged_in? && current_user == user
       logout!
       user.clear_data
     end
     redirect '/'
   end
+
+  private
+
+    def find_by_username
+      User.find_by(username: params[:name])
+    end
 
 end

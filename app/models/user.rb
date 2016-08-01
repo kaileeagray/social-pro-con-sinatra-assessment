@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :lists
-  has_many :pros, through: :lists
-  has_many :cons, through: :lists
+  has_many :pros
+  has_many :cons
 
   has_secure_password
 

@@ -17,7 +17,7 @@ class ProConController < ApplicationController
 
   end
 
-  get '/lists/:list_id/:procon/:procon_id/delete' do
+  delete '/lists/:list_id/:procon/:procon_id' do
     @list = List.find(params[:list_id])
 
     if !belongs_to_current_user?(@list) || !logged_in?

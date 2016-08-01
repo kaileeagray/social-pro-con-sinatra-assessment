@@ -1,6 +1,12 @@
 <div class="container">
   <h1><%=@user.username if @user%>'s Lists</h1>
-
+  <%if current_user == @user%>
+    <a role="button" class="btn btn-success btn-block" title="new list" href="/lists/new">Add New List</a>
+    <form action="/users/<%=@user.username%>" method="post">
+      <input type="hidden" name="_method" value="DELETE">
+      <button type="submit" class="btn btn-danger btn-block">Delete Account</button>
+    </form>
+  <%end%>
   <%@user.lists.all.each do |list|%>
       <a href="/lists/<%=list.id%>"><h4><%=list.title%></h4></a>
       <p><%=list.description%></p>

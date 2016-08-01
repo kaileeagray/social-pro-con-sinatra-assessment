@@ -59,8 +59,6 @@ class ListsController < ApplicationController
 
 
 
-
-
   post '/lists/:id/edit' do
     @list = List.find(params[:id])
     if !logged_in?
@@ -71,7 +69,7 @@ class ListsController < ApplicationController
     end
   end
 
-  delete '/lists/:id/delete' do #delete action
+  delete '/lists/:id' do #delete action
     @errors = []
     list = List.find(params[:id])
     if logged_in? && list == current_user.lists.find(params[:id])
@@ -80,7 +78,7 @@ class ListsController < ApplicationController
     else
       @errors << "Sorry, your delete action cannot be completed because you were not logged in. Please try again." if !logged_in?
       @errors << "Sorry, your delete action cannot be completed. You may only delete your own lists. Please try again." if list != current_user.lists.find(params[:id])
-      erb :"/users/lists/#{params[:id]}"
+      erb :"/lists/#{params[:id]}"
     end
   end
 
