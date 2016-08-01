@@ -68,7 +68,7 @@ class ListsController < ApplicationController
     end
   end
 
-  delete '/lists/:id' do #delete action
+  delete '/lists/:id/delete' do #delete action
     @errors = []
     list = find_list_id
     if logged_in? && list == current_user.lists.find(params[:id])

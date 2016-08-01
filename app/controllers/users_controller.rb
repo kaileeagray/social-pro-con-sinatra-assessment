@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   end
 
 
-  delete '/users/:name' do #delete action
+  delete '/users/:name/delete' do #delete action
     user = find_by_username
     if logged_in? && current_user == user
       logout!

@@ -9,7 +9,7 @@
       <div class="col-md-2">
         <br>
         <div class="form-group">
-          <form action="/lists/<%=@list.id%>/<%=@procon%>/<%=@item.id%>" method="post">
+          <form action="/lists/<%=@list.id%>/<%=@procon%>/<%=@item.id%>/delete" method="post">
             <input type="hidden" name="_method" value="DELETE">
             <button type="submit" class="btn btn-danger btn-block">Delete <%=@procon%></button>
           </form>

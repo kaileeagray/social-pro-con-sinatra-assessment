@@ -7,14 +7,14 @@
         <a role="button" class="btn btn-success btn-block" title="new list" href="/lists/new">Add New List</a>
       </div>
       <div class="col-md-6">
-        <form action="/users/<%=@user.username%>" method="post">
+        <form action="/users/<%=@user.username%>/delete" method="post">
           <input type="hidden" name="_method" value="DELETE">
           <button type="submit" class="btn btn-danger btn-block">Delete Account</button>
         </form>
       </div>
     </div>
   <%end%>
-  
+
   <%@user.lists.all.each do |list|%>
       <a href="/lists/<%=list.id%>"><h4><%=list.title%></h4></a>
       <p><%=list.description%></p>
