@@ -25,14 +25,20 @@ class ListsController < ApplicationController
   end
 
   post '/lists' do
-    if logged_in? && params[:list][:title] != "" && params[:list][:description] != ""
-      binding.pry
+    @errors = []
+    binding.pry
+    if params[:list][:title] != "" || params[:list][:description] != ""
+      @errors << "List title and description cannot be blank."
+      erb :'lists/create_list'
+    else
       @list = List.create(params["list"])
       @list.user_id = current_user.id
-      @list.save
-      redirect "/lists/#{@list.id}"
-    else
-      redirect '/lists'
+      if @list.save
+        redirect "/lists/#{@list.id}"
+      else
+        @errors = @list.errors
+        erb :'lists/create_list'
+      end
     end
   end
 
@@ -53,6 +59,7 @@ class ListsController < ApplicationController
     elsif current_user.lists.include?(@list) && logged_in?
       erb :'/lists/edit_list'
     else
+      @errors = [""]
       erb :'/lists/show_list'
     end
   end

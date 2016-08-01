@@ -1,3 +1,16 @@
+<%if @errors%>
+  <div class="panel panel-danger">
+    <!-- Default panel contents -->
+    <div class="panel-heading">List creation failed. Please try again after fixing the following errrors:</div>
+    <!-- List group -->
+    <ul class="list-group">
+      <% @errors.each do |error|%>
+        <li class="list-group-item"><%=error%></li>
+      <%end%>
+    </ul>
+  </div>
+<%end%>
+
 <div class="container">
   <h1>New Pro/Con List</h1>
   <br></br>
