@@ -39,10 +39,11 @@ class ListsController < ApplicationController
 
   get '/lists/:id' do
     @list = find_list_id
-    if current_user.lists.include?(@list) && logged_in?
-      erb :'/lists/user_show_list'
-    else
+
+    if logged_in?
       erb :'/lists/show_list'
+    else
+      redirect '/'
     end
   end
 

@@ -1,3 +1,7 @@
+.non-user {
+  display: none;
+}
+
 .entry:not(:first-of-type)
 {
     margin-top: 10px;
