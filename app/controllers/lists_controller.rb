@@ -24,7 +24,7 @@ class ListsController < ApplicationController
     end
   end
 
-  post '/lists/new' do
+  post '/lists' do
     if logged_in? && params[:title] != ""
       @list = List.new(title: params[:title])
       @list.source = params[:source] if params[:source]
@@ -33,7 +33,16 @@ class ListsController < ApplicationController
       @list.save
       redirect "/lists/#{@list.id}"
     else
-      redirect '/lists/new'
+      redirect '/lists'
+    end
+  end
+
+  get '/lists/:id' do
+    @list = find_list_id
+    if current_user.lists.include?(@list) && logged_in?
+      erb :'/lists/user_show_list'
+    else
+      erb :'/lists/show_list'
     end
   end
 
@@ -47,16 +56,6 @@ class ListsController < ApplicationController
       erb :'/lists/show_list'
     end
   end
-
-  get '/lists/:id' do
-    @list = find_list_id
-    if current_user.lists.include?(@list) && logged_in?
-      erb :'/lists/user_show_list'
-    else
-      erb :'/lists/show_list'
-    end
-  end
-
 
   patch '/lists/:id' do
     @list = find_list_id

@@ -3,7 +3,7 @@
     <h2><%=@list.title%> <small><%=@list.description%></small></h2>
     <br>
 
-  <form action="/lists/<%=@list.id%>/<%=@procon%>/new" method="POST">
+  <form action="/lists/<%=@list.id%>/<%=@procon%>" method="POST">
     <div class="form-group">
       <label for="description">Description of Argument: </label>
       <textarea name="description" class="form-control" placeholder="description required" rows="3" required autofocus></textarea>
