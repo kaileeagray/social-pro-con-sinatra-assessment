@@ -6,10 +6,10 @@
   <form action="/lists/<%=@list.id%>/<%=@procon%>" method="POST">
     <div class="form-group">
       <label for="description">Description of Argument: </label>
-      <textarea name="description" class="form-control" placeholder="description required" rows="3" required autofocus></textarea>
+      <textarea name="item[description]" class="form-control" placeholder="description required" rows="3" required autofocus></textarea>
     </div> <br>
     <div class="form-group">
-      <select class="form-control" name="weight">
+      <select class="form-control" name="item[weight]">
         <option selected>Select weight. 0 = no signficance, 10 = highest signifcance.</option>
         <%(0..10).to_a.each do |index|%>
           <option value"<%=index%>"> <%=index%></option>
