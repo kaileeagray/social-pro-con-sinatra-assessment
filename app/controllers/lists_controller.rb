@@ -26,6 +26,7 @@ class ListsController < ApplicationController
 
   post '/lists' do
     if logged_in? && params[:list][:title] != "" && params[:list][:description] != ""
+      binding.pry
       @list = List.create(params["list"])
       @list.user_id = current_user.id
       @list.save

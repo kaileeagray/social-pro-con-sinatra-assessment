@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160713185944) do
+ActiveRecord::Schema.define(version: 20160801211139) do
 
   create_table "cons", force: :cascade do |t|
     t.integer  "list_id"
@@ -24,13 +24,13 @@ ActiveRecord::Schema.define(version: 20160713185944) do
 
   create_table "lists", force: :cascade do |t|
     t.string   "title"
-    t.string   "source",      default: "f"
+    t.string   "source"
     t.text     "description"
     t.integer  "user_id"
     t.integer  "pro_sum"
     t.integer  "con_sum"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "pros", force: :cascade do |t|
