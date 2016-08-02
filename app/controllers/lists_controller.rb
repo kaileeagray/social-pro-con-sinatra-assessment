@@ -27,8 +27,8 @@ class ListsController < ApplicationController
   post '/lists' do
     @errors = []
     binding.pry
-    if params[:list][:title] != "" || params[:list][:description] != ""
-      @errors << "List title and description cannot be blank."
+    if params[:list][:title] != ""
+      @errors << "List title cannot be blank."
       erb :'lists/create_list'
     else
       @list = List.create(params["list"])
@@ -43,7 +43,9 @@ class ListsController < ApplicationController
   end
 
   get '/lists/:id' do
+
     @list = find_list_id
+    @user_lists = @list.pros.where(user_id: @list.user_id).where.not(user_id: current_user.id)
 
     if logged_in?
       erb :'/lists/show_list'
@@ -59,7 +61,6 @@ class ListsController < ApplicationController
     elsif current_user.lists.include?(@list) && logged_in?
       erb :'/lists/edit_list'
     else
-      @errors = [""]
       erb :'/lists/show_list'
     end
   end

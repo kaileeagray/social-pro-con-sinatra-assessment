@@ -6,19 +6,16 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    params_hash = {username: params[:username],
-                  email: params[:email],
-                  password: params[:password]}
-    if signup_errors?(params_hash) || params[:password] != params[:confirm_password]
+    if signup_errors?(user_hash) || params[:password] != params[:confirm_password]
       @errors = []
-      @errors << "All fields must be completed." if any_nil?(params_hash)
-      @errors << "Username cannot contain spaces." if username_spaces?(params)
-      @errors << "The username #{params[:username]} is associated to an existing account." if username_exists?(params_hash)
-      @errors << "The email #{params[:email]} is associated to an existing account." if email_exists?(params_hash)
+      @errors << "All fields must be completed." if any_nil?(user_hash)
+      @errors << "Username cannot contain spaces." if username_spaces?(user_hash)
+      @errors << "The username #{params[:username]} is associated to an existing account." if username_exists?(user_hash)
+      @errors << "The email #{params[:email]} is associated to an existing account." if email_exists?(user_hash)
       @errors << "Passwords must match." if params["password"] != params["confirm_password"]
       erb :'/users/create_user'
     else
-      user = User.create(username: params[:username], email: params[:email], password: params[:password])
+      user = User.create(user_hash)
       login(user.username, params[:password])
       redirect '/lists'
     end
@@ -42,7 +39,7 @@ class UsersController < ApplicationController
     user = find_by_username
     if logged_in? && current_user == user
       logout!
-      user.clear_data
+      user.destroy
     end
     redirect '/'
   end
@@ -51,6 +48,10 @@ class UsersController < ApplicationController
 
     def find_by_username
       User.find_by(username: params[:name])
+    end
+
+    def user_hash
+      {username: params[:username], email: params[:email], password: params[:password]}
     end
 
 end

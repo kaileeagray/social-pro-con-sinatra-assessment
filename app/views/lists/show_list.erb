@@ -58,7 +58,7 @@
           </tbody>
         <%end%>
 
-        <%if @list.pros.where(user_id: @list.user_id).where.not(user_id: current_user.id).count > 0%>
+        <%unless @user_lists.empty?%>
             <thead>
               <tr class="alert alert-success" role="alert">
                 <th>Pros from List Creator</th>
@@ -68,7 +68,7 @@
               </tr>
             </thead>
             <tbody>
-              <%@list.pros.where(user_id: @list.user_id).where.not(user_id: current_user.id).each do |pro|%>
+              <%@user_lists.each do |pro|%>
                 <tr>
                   <td><%=pro.description%></td>
                   <td class="text-center"><%=pro.weight%></td>

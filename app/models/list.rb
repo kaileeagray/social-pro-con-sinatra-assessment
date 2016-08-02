@@ -1,7 +1,10 @@
 class List < ActiveRecord::Base
   has_many :pros
   has_many :cons
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
+
+
+
 
 
   def pro_sum

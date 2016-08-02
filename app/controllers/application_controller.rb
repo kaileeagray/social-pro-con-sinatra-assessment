@@ -9,6 +9,7 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "prosandcons"
   end
 
+
   get "/" do
     if logged_in?
       redirect "/lists"
