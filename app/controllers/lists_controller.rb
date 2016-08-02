@@ -43,10 +43,15 @@ class ListsController < ApplicationController
   end
 
   get '/lists/:id' do
-
     @list = find_list_id
-    @user_lists = @list.pros.where(user_id: @list.user_id).where.not(user_id: current_user.id)
-
+    @list_pros = @list.pros
+    @user_pros = @list_pros.where(user_id: @list.user_id).where.not(user_id: current_user.id)
+    @current_user_pros = @list_pros.where(user_id: current_user.id)
+    @other_users_pros =@list.pros.where.not(user_id: [@list.user_id, current_user.id])
+    @list_cons = @list.cons
+    @user_cons = @list_cons.where(user_id: @list.user_id).where.not(user_id: current_user.id)
+    @current_user_cons = @list_cons.where(user_id: current_user.id)
+    @other_users_cons =@list.cons.where.not(user_id: [@list.user_id, current_user.id])
     if logged_in?
       erb :'/lists/show_list'
     else
