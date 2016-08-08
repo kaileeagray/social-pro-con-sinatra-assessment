@@ -2,7 +2,7 @@
 
 ### Introduction
 
-Sinatra CRUD app for creating and managing pro con lists. Users must create an account or sign in to view and create lists. Once signed in, users can create, edit, or delete lists. Users can also view other users' lists and add pros and cons to their lists. Users can delete their account.
+Sinatra CRUD app for creating and managing pro con lists. Users must create an account or sign in to view and create lists. Once signed in, users can create, edit, or delete lists. Users can also view other users' lists and add pros and cons to their lists. Users can delete their account. View app walkthrough on [YouTube](https://youtu.be/mz8LtbRiLmk).
 
 ### Installation
 
